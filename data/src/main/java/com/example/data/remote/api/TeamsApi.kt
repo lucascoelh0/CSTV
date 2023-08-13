@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 fun interface TeamsApi {
-
     @GET("teams")
     suspend fun getTeamDetails(
         @Query("filter[id]") id: Int,

@@ -1,6 +1,6 @@
-package com.example.data.remote.models
+package com.example.domain.models
 
-enum class MatchStatusDto(val status: String) {
+enum class MatchStatus(val status: String) {
     RUNNING("running"),
     NOT_STARTED("not_started"),
     FINISHED("FINISHED"),

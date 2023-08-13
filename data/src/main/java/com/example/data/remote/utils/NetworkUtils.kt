@@ -1,7 +1,7 @@
 package com.example.data.remote.utils
 
-import com.example.data.remote.models.common.GenericErrorResponse
 import com.example.core.models.Resource
+import com.example.data.remote.models.common.GenericErrorResponse
 import com.haroldadmin.cnradapter.NetworkResponse
 
 fun <T : Any, R : Any> handleNetworkResponse(

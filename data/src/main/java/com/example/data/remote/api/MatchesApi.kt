@@ -6,7 +6,6 @@ import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.GET
 
 fun interface MatchesApi {
-
-    @GET("csgo/matches")
+    @GET("matches")
     suspend fun getAllMatches(): NetworkResponse<List<MatchDto>, GenericErrorResponse>
 }

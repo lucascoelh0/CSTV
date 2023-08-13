@@ -1,5 +1,6 @@
 package com.example.data.remote.models
 
+import com.example.domain.models.LeagueModel
 import com.google.gson.annotations.SerializedName
 
 data class LeagueDto(
@@ -7,4 +8,10 @@ data class LeagueDto(
     @SerializedName("image_url")
     val imageUrl: String? = null,
     val name: String? = null,
+)
+
+fun LeagueDto.toModel() = LeagueModel(
+    id = id ?: -1,
+    imageUrl = imageUrl.orEmpty(),
+    name = name.orEmpty(),
 )
