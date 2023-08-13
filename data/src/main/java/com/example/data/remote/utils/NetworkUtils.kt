@@ -1,6 +1,6 @@
 package com.example.data.remote.utils
 
-import com.example.data.remote.models.GenericErrorResponse
+import com.example.data.remote.models.common.GenericErrorResponse
 import com.example.core.models.Resource
 import com.haroldadmin.cnradapter.NetworkResponse
 

@@ -1,7 +1,10 @@
 package com.luminay.gomatches.di.modules
 
 import android.content.Context
+import com.example.data.remote.api.MatchesApi
+import com.example.data.remote.api.TeamsApi
 import com.example.data.remote.interceptors.CacheInterceptor
+import com.example.data.remote.interceptors.RequestInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
@@ -55,6 +58,7 @@ internal class NetworkModule {
         return OkHttpClient
             .Builder()
             .readTimeout(connectionTimeout, TimeUnit.SECONDS)
+            .addInterceptor(RequestInterceptor())
             .addInterceptor(loggingInterceptor)
             .addNetworkInterceptor(CacheInterceptor())
             .cache(cache)
@@ -92,8 +96,16 @@ internal class NetworkModule {
         .addCallAdapterFactory(networkResponseAdapterFactory)
         .build()
 
+    @Singleton
+    @Provides
+    fun providesMatchesApi(retrofit: Retrofit): MatchesApi = retrofit.create(MatchesApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideTeamsApi(retrofit: Retrofit): TeamsApi = retrofit.create(TeamsApi::class.java)
+
     companion object {
-        private const val BASE_URL = "https://api.pandascore.co"
+        private const val BASE_URL = "https://api.pandascore.co/csgo/"
         private const val NETWORK_TIMEOUT = 60L
         private const val CACHE_SIZE = 10 * 1024 * 1024L // 10 MB
         private const val CACHE_DIR = "http-cache"
