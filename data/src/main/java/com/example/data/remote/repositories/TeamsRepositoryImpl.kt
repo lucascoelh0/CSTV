@@ -4,21 +4,21 @@ import com.example.core.models.Resource
 import com.example.data.remote.api.TeamsApi
 import com.example.data.remote.models.toModel
 import com.example.data.remote.utils.handleNetworkResponse
-import com.example.domain.models.PlayerModel
-import com.example.domain.repositories.IPlayersRepository
+import com.example.domain.models.TeamDetailsModel
+import com.example.domain.repositories.ITeamsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class PlayersRepositoryImpl @Inject constructor(
+class TeamsRepositoryImpl @Inject constructor(
     private val teamsApi: TeamsApi,
-) : IPlayersRepository {
+) : ITeamsRepository {
 
-    override fun getTeamPlayers(id: Int): Flow<Resource<List<PlayerModel>>> {
+    override fun getTeamDetails(ids: String): Flow<Resource<List<TeamDetailsModel>>> {
         return flow {
-            val response = teamsApi.getTeamDetails(id)
+            val response = teamsApi.getTeamDetails(ids)
             val resource = handleNetworkResponse(response) {
-                it.toModel().first().players
+                it.toModel()
             }
             emit(resource)
         }

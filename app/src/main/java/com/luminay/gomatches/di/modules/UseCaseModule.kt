@@ -1,9 +1,9 @@
 package com.luminay.gomatches.di.modules
 
 import com.example.domain.usecases.GetMatchesUseCaseImpl
-import com.example.domain.usecases.GetTeamPlayersUseCaseImpl
+import com.example.domain.usecases.GetTeamDetailsUseCaseImpl
 import com.example.domain.usecases.IGetMatchesUseCase
-import com.example.domain.usecases.IGetTeamPlayersUseCase
+import com.example.domain.usecases.IGetTeamDetailsUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,5 +17,5 @@ interface UseCaseModule {
     fun providesMatchesUseCase(getMatchesUseCase: GetMatchesUseCaseImpl): IGetMatchesUseCase
 
     @Binds
-    fun providesGetTeamPlayersUseCase(getTeamPlayersUseCase: GetTeamPlayersUseCaseImpl): IGetTeamPlayersUseCase
+    fun providesGetTeamPlayersUseCase(getTeamPlayersUseCase: GetTeamDetailsUseCaseImpl): IGetTeamDetailsUseCase
 }

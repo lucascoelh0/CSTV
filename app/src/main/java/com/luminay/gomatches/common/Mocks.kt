@@ -5,10 +5,14 @@ import com.example.core.constants.TBD
 import com.example.domain.models.LeagueModel
 import com.example.domain.models.MatchModel
 import com.example.domain.models.MatchStatus
+import com.example.domain.models.PlayerModel
 import com.example.domain.models.SerieModel
 import com.example.domain.models.TeamModel
 
 const val LEAGUE_NAME = "League Name"
+const val PLAYER_FIRST_NAME = "First"
+const val PLAYER_SECOND_NAME = "Second"
+const val PLAYER_NICKNAME = "Player Nickname"
 const val URL = "https://cdn.pandascore.co/images/team/image/133512/190px__72_c.png"
 
 fun getTeamMock() = TeamModel(
@@ -35,4 +39,11 @@ fun getMatchModelMock() = MatchModel(
     opponents = emptyList(),
     scheduledAt = EMPTY,
     status = MatchStatus.RUNNING,
+)
+
+fun getPlayerModelMock() = PlayerModel(
+    firstName = PLAYER_FIRST_NAME,
+    imageUrl = EMPTY,
+    lastName = PLAYER_SECOND_NAME,
+    name = PLAYER_NICKNAME,
 )

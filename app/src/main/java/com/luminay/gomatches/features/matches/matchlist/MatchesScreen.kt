@@ -32,13 +32,16 @@ import com.example.domain.models.MatchModel
 import com.example.domain.models.sortByScheduledDate
 import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getMatchModelMock
+import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
 import com.luminay.gomatches.theme.Purple80
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination
 @Composable
 fun MatchesScreen(
     id: Int,
+    navigator: DestinationsNavigator,
 ) {
     Scaffold(
         topBar = {
@@ -58,7 +61,14 @@ fun MatchesScreen(
         content = { padding ->
             MatchesStatus(
                 paddingValues = padding,
-                onMatchClick = { /*TODO*/ },
+                onMatchClick = {
+                    navigator.navigate(
+                        MatchDetailsScreenDestination(
+                            id = it.id,
+                            it,
+                        )
+                    )
+                },
             )
         }
     )
