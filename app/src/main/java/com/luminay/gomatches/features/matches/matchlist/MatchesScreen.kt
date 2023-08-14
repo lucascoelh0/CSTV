@@ -27,23 +27,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.core.models.Resource
 import com.example.core.models.Status
 import com.example.domain.models.MatchModel
 import com.example.domain.models.sortByScheduledDate
 import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getMatchModelMock
 import com.luminay.gomatches.theme.Purple80
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
 fun MatchesScreen(
-    modifier: Modifier = Modifier,
-    matchListViewModel: MatchListViewModel = hiltViewModel(),
+    id: Int,
 ) {
-    val matches by matchListViewModel.matches.collectAsStateWithLifecycle(initialValue = null)
-
     Scaffold(
-        modifier = modifier,
         topBar = {
             Text(
                 text = stringResource(id = R.string.matches),
@@ -61,8 +58,6 @@ fun MatchesScreen(
         content = { padding ->
             MatchesStatus(
                 paddingValues = padding,
-                matches = matches,
-                onRetry = { matchListViewModel.fetchData() },
                 onMatchClick = { /*TODO*/ },
             )
         }
@@ -72,11 +67,11 @@ fun MatchesScreen(
 @Composable
 fun MatchesStatus(
     paddingValues: PaddingValues,
-    matches: Resource<List<MatchModel>>?,
-    onRetry: () -> Unit,
     onMatchClick: (MatchModel) -> Unit,
     modifier: Modifier = Modifier,
+    matchListViewModel: MatchListViewModel = hiltViewModel(),
 ) {
+    val matches by matchListViewModel.matches.collectAsStateWithLifecycle(initialValue = null)
     Column(
         modifier = modifier
             .padding(paddingValues)
@@ -93,7 +88,7 @@ fun MatchesStatus(
             }
 
             Status.SUCCESS -> {
-                val matchesList = matches.data
+                val matchesList = matches?.data
                 matchesList?.let {
                     MatchesList(
                         matches = it.sortByScheduledDate(),
@@ -102,7 +97,7 @@ fun MatchesStatus(
                     )
                 } ?: run {
                     ErrorMessage(
-                        onRetry = onRetry,
+                        onRetry = { matchListViewModel.fetchData() },
                         modifier = modifier,
                     )
                 }
@@ -110,7 +105,7 @@ fun MatchesStatus(
 
             else -> {
                 ErrorMessage(
-                    onRetry = onRetry,
+                    onRetry = { matchListViewModel.fetchData() },
                     modifier = modifier,
                 )
             }

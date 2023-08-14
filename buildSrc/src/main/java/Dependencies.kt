@@ -39,8 +39,10 @@ object Dependencies {
         const val composeShimmer = "com.valentinilk.shimmer:compose-shimmer:${Version.composeShimmer}"
         const val networkResponseAdapter =
             "com.github.haroldadmin:NetworkResponseAdapter:${Version.networkResponseAdapter}"
-        const val composeDestinations =
-            "io.github.raamcosta.compose-destinations:animations-core:${Version.composeDestinations}"
+        const val composeDestinationsCore =
+            "io.github.raamcosta.compose-destinations:core:${Version.composeDestinations}"
+        const val composeDestinationsKsp =
+            "io.github.raamcosta.compose-destinations:ksp:${Version.composeDestinations}"
     }
 
     object SquareUp {

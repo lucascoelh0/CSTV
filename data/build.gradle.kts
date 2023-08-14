@@ -4,7 +4,6 @@ plugins {
     id(Plugin.Android.library)
     id(Plugin.Jetbrains.kotlin)
     id(Plugin.Hilt.android)
-    id(Plugin.Ksp.android) version Version.ksp apply false
     kotlin(Plugin.Kotlin.kapt)
 }
 
@@ -18,6 +17,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
     }
 
     buildTypes {
@@ -27,11 +32,6 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
-    kapt {
-        javacOptions {
-            option("-dagger.hilt.disableModulesHaveInstallInCheck=true")
         }
     }
     buildFeatures {

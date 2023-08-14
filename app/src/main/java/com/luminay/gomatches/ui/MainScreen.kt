@@ -2,13 +2,21 @@ package com.luminay.gomatches.ui
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import com.luminay.gomatches.features.matches.matchlist.MatchesScreen
-import com.luminay.gomatches.theme.GoMatchesTheme
+import com.luminay.gomatches.destinations.MatchesScreenDestination
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@RootNavGraph(start = true)
+@Destination
 @ExperimentalMaterial3Api
 @Composable
-fun MainScreen() {
-    GoMatchesTheme {
-        MatchesScreen()
-    }
+fun MainScreen(
+    navigator: DestinationsNavigator,
+) {
+    navigator.navigate(
+        MatchesScreenDestination(
+            id = 1,
+        )
+    )
 }

@@ -3,7 +3,7 @@ plugins {
     id(Plugin.Kotlin.android)
     id(Plugin.Jetbrains.kotlin)
     id(Plugin.Hilt.android)
-    id(Plugin.Ksp.android) version Version.ksp apply false
+    id(Plugin.Ksp.android)
     kotlin(Plugin.Kotlin.kapt)
 }
 
@@ -22,6 +22,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
     }
 
     buildTypes {
@@ -33,11 +39,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    kapt {
-        javacOptions {
-            option("-dagger.hilt.disableModulesHaveInstallInCheck=true")
-        }
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -78,7 +79,8 @@ dependencies {
     implementation(Dependencies.SquareUp.retrofitConverterGson)
     implementation(Dependencies.Google.gson)
     implementation(Dependencies.Libraries.networkResponseAdapter)
-    implementation(Dependencies.Libraries.composeDestinations)
+    implementation(Dependencies.Libraries.composeDestinationsCore)
+    ksp(Dependencies.Libraries.composeDestinationsKsp)
     kapt(Dependencies.Hilt.hiltCompiler)
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.mockk)

@@ -6,7 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.core.view.WindowCompat
-import com.luminay.gomatches.ui.MainScreen
+import com.luminay.gomatches.theme.GoMatchesTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +19,9 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = Color.TRANSPARENT
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            MainScreen()
+            GoMatchesTheme {
+                DestinationsNavHost(navGraph = NavGraphs.root)
+            }
         }
     }
 }
