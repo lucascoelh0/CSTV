@@ -78,6 +78,7 @@ dependencies {
     implementation(Dependencies.SquareUp.retrofitConverterGson)
     implementation(Dependencies.Google.gson)
     implementation(Dependencies.Libraries.networkResponseAdapter)
+    implementation(Dependencies.Libraries.composeDestinations)
     kapt(Dependencies.Hilt.hiltCompiler)
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.mockk)
