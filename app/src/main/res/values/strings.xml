@@ -7,4 +7,5 @@
     <string name="now">AGORA</string>
     <string name="matches">Partidas</string>
     <string name="finished">Finalizado</string>
+    <string name="back">Voltar</string>
 </resources>

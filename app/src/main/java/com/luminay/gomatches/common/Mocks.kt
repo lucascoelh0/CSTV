@@ -10,6 +10,7 @@ import com.example.domain.models.SerieModel
 import com.example.domain.models.TeamModel
 
 const val LEAGUE_NAME = "League Name"
+const val SERIE_NAME = "Serie Name"
 const val PLAYER_FIRST_NAME = "First"
 const val PLAYER_SECOND_NAME = "Second"
 const val PLAYER_NICKNAME = "Player Nickname"
@@ -29,7 +30,7 @@ fun getLeagueMock() = LeagueModel(
 )
 
 fun getSerieMock() = SerieModel(
-    EMPTY
+    SERIE_NAME
 )
 
 fun getMatchModelMock() = MatchModel(

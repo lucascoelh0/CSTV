@@ -3,8 +3,10 @@ package com.luminay.gomatches.features.matches.matchdetails
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.constants.EMPTY
 import com.example.core.models.Resource
 import com.example.domain.models.MatchModel
+import com.example.domain.models.PlayerModel
 import com.example.domain.models.TeamDetailsModel
 import com.example.domain.usecases.GetTeamDetailsUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -47,4 +49,37 @@ class MatchDetailsViewModel @Inject constructor(
         }
         return teamIds
     }
+
+    fun getTeamPlayersPair(
+        teams: List<TeamDetailsModel>,
+    ): Pair<List<PlayerModel>, List<PlayerModel>> {
+        return when (teams.size) {
+            0 -> {
+                Pair(
+                    emptyList(),
+                    emptyList(),
+                )
+            }
+
+            1 -> {
+                Pair(
+                    teams.first().players,
+                    emptyList(),
+                )
+            }
+
+            else -> {
+                Pair(
+                    teams.first().players,
+                    teams.last().players,
+                )
+            }
+        }
+    }
+
+//    private fun getEmptyTeamDetails(): TeamDetailsModel = TeamDetailsModel(
+//        name = EMPTY,
+//        players = emptyList(),
+//        imageUrl = EMPTY,
+//    )
 }

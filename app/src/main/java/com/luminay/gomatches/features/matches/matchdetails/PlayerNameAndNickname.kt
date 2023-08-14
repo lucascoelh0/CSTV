@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.core.constants.TBD
 import com.example.domain.models.PlayerModel
 import com.luminay.gomatches.common.getPlayerModelMock
 import com.luminay.gomatches.theme.Blue80
@@ -24,14 +25,18 @@ fun PlayerNameAndNickname(
         horizontalAlignment = if (isFirstTeam) Alignment.End else Alignment.Start,
     ) {
         Text(
-            text = playerModel.name,
+            text = playerModel.name.ifEmpty { TBD },
             color = Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.W700,
         )
 
         Text(
-            text = "${playerModel.firstName} ${playerModel.lastName}",
+            text = if (playerModel.firstName.isNotEmpty() || playerModel.lastName.isNotEmpty()) {
+                "${playerModel.firstName} ${playerModel.lastName}"
+            } else {
+                TBD
+            },
             color = Blue80,
             fontSize = 12.sp,
         )
