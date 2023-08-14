@@ -1,6 +1,7 @@
 plugins {
     id(Plugin.Android.library)
     id(Plugin.Jetbrains.kotlin)
+    id(Plugin.Ksp.android) version Version.ksp apply false
     kotlin(Plugin.Kotlin.kapt)
 }
 
@@ -24,6 +25,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    kapt {
+        javacOptions {
+            option("-dagger.hilt.disableModulesHaveInstallInCheck=true")
+        }
     }
     kotlinOptions {
         jvmTarget = "17"

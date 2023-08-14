@@ -3,6 +3,7 @@ plugins {
     id(Plugin.Kotlin.android)
     id(Plugin.Jetbrains.kotlin)
     id(Plugin.Hilt.android)
+    id(Plugin.Ksp.android) version Version.ksp apply false
     kotlin(Plugin.Kotlin.kapt)
 }
 
@@ -35,7 +36,7 @@ android {
     }
     kapt {
         javacOptions {
-            option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+            option("-dagger.hilt.disableModulesHaveInstallInCheck=true")
         }
     }
     kotlinOptions {
