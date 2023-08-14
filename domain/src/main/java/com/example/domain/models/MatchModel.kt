@@ -8,3 +8,9 @@ data class MatchModel(
     val scheduledAt: String,
     val status: MatchStatus,
 )
+
+fun List<MatchModel>.sortByScheduledDate() = filter {
+    it.status != MatchStatus.UNKNOWN
+}.sortedBy {
+    it.scheduledAt
+}

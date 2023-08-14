@@ -8,10 +8,8 @@ private val LightColorScheme = lightColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80,
-    surface = Orange20,
-    background = Orange20,
-    onSurface = Red90,
-    onBackground = Red90,
+    surface = DarkBlue900,
+    background = DarkBlue900,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

@@ -2,10 +2,16 @@ package com.luminay.gomatches.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
+val Purple80 = Color(0xFF272639)
+
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
 
-val Red90 = Color(0xFF390C0C)
+val Red500 = Color(0xFFF42A35)
 
-val Orange20 = Color(0xFFC3B189)
+val DarkBlue900 = Color(0xFF161621)
+
+val White50 = Color(0x80FFFFFF)
+
+val Gray20 = Color(0x33FAFAFA)
+val Gray30 = Color(0x33FFFFFF)

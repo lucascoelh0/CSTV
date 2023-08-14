@@ -2,4 +2,9 @@
     <string name="app_name">Go Matches</string>
     <string name="loading_error">Erro ao carregar as partidas. Tente novamente</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="image_label">Imagem</string>
+    <string name="vs">vs</string>
+    <string name="now">AGORA</string>
+    <string name="matches">Partidas</string>
+    <string name="finished">Finalizado</string>
 </resources>

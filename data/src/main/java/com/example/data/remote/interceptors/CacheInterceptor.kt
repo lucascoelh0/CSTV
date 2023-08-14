@@ -12,7 +12,7 @@ class CacheInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val response: Response = chain.proceed(chain.request())
         val cacheControl: CacheControl = Builder()
-            .maxAge(MAX_AGE_HOURS, TimeUnit.HOURS)
+            .maxAge(MAX_AGE_MINUTES, TimeUnit.MINUTES)
             .build()
         return response.newBuilder()
             .removeHeader(PRAGMA_HEADER)
@@ -24,6 +24,6 @@ class CacheInterceptor : Interceptor {
     companion object {
         const val PRAGMA_HEADER = "Pragma"
         const val CACHE_CONTROL_HEADER = "Cache-Control"
-        const val MAX_AGE_HOURS = 4
+        const val MAX_AGE_MINUTES = 1
     }
 }
