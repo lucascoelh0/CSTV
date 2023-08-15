@@ -14,24 +14,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.domain.models.MatchModel
+import com.example.domain.models.getOpponentsInfo
 import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getMatchModelMock
-import com.luminay.gomatches.features.matches.matchlist.MatchListViewModel
 import com.luminay.gomatches.theme.White50
 
 @Composable
 fun TeamVsTeam(
     matchModel: MatchModel,
     modifier: Modifier = Modifier,
-    matchInfoViewModel: MatchListViewModel = hiltViewModel(),
 ) {
     val opponentsPair by remember {
         mutableStateOf(
-            matchInfoViewModel.getOpponentsInfo(
-                opponents = matchModel.opponents,
-            )
+            matchModel.opponents.getOpponentsInfo()
         )
     }
 

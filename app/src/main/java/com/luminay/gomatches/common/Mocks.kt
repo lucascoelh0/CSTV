@@ -2,6 +2,7 @@ package com.luminay.gomatches.common
 
 import com.example.core.constants.EMPTY
 import com.example.core.constants.TBD
+import com.example.core.utils.TimeUtils
 import com.example.domain.models.LeagueModel
 import com.example.domain.models.MatchModel
 import com.example.domain.models.MatchStatus
@@ -38,7 +39,7 @@ fun getMatchModelMock() = MatchModel(
     league = getLeagueMock(),
     serie = getSerieMock(),
     opponents = emptyList(),
-    scheduledAt = EMPTY,
+    scheduledAt = TimeUtils.getTodayDateUtcString(),
     status = MatchStatus.RUNNING,
 )
 

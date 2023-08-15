@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,12 +26,7 @@ fun PlayerDetailsContainer(
 ) {
     Box(
         modifier = modifier
-            .padding(
-                top = 15.dp,
-                end = if (isFirstTeam) 12.dp else 8.dp,
-                bottom = 8.dp,
-                start = if (isFirstTeam) 8.dp else 12.dp,
-            )
+            .padding(top = 3.dp)
             .background(
                 color = Purple80,
                 shape = RoundedCornerShape(
@@ -41,19 +37,14 @@ fun PlayerDetailsContainer(
                 )
             ),
     ) {
-        Row(
-            modifier = Modifier.heightIn(min = 54.dp),
-            horizontalArrangement = if (isFirstTeam) Arrangement.End else Arrangement.Start,
-        ) {
-            if (isFirstTeam) {
-                PlayerDetailsContainerFirstTeam(
-                    playerModel = playerModel
-                )
-            } else {
-                PlayerDetailsContainerSecondTeam(
-                    playerModel = playerModel
-                )
-            }
+        if (isFirstTeam) {
+            PlayerDetailsContainerFirstTeam(
+                playerModel = playerModel
+            )
+        } else {
+            PlayerDetailsContainerSecondTeam(
+                playerModel = playerModel
+            )
         }
     }
 }
@@ -62,48 +53,64 @@ fun PlayerDetailsContainer(
 private fun PlayerDetailsContainerFirstTeam(
     playerModel: PlayerModel,
 ) {
-    PlayerNameAndNickname(
-        playerModel = playerModel,
-        isFirstTeam = true,
-        modifier = Modifier
-            .padding(
-                top = 15.dp,
-                end = 16.dp,
-                bottom = 8.dp,
-            ),
-    )
+    Row(
+        modifier = Modifier.heightIn(min = 54.dp),
+        horizontalArrangement = Arrangement.End,
+    ) {
+        PlayerNameAndNickname(
+            playerModel = playerModel,
+            isFirstTeam = true,
+            modifier = Modifier
+                .padding(
+                    top = 15.dp,
+                    end = 16.dp,
+                    bottom = 8.dp,
+                    start = 8.dp,
+                )
+                .weight(1f),
+        )
 
-    RoundSquareImage(
-        imageUrl = playerModel.imageUrl,
-        modifier = Modifier
-            .padding(end = 16.dp)
-            .offset(y = (-2).dp)
-    )
+        RoundSquareImage(
+            imageUrl = playerModel.imageUrl,
+            modifier = Modifier
+                .padding(end = 16.dp)
+                .offset(y = (-3).dp)
+                .size(48.dp),
+        )
+    }
 }
 
 @Composable
 private fun PlayerDetailsContainerSecondTeam(
     playerModel: PlayerModel,
 ) {
-    RoundSquareImage(
-        imageUrl = playerModel.imageUrl,
-        modifier = Modifier
-            .padding(
-                end = 16.dp,
-                start = 12.dp,
-            )
-            .offset(y = (-2).dp),
-    )
+    Row(
+        modifier = Modifier.heightIn(min = 54.dp),
+        horizontalArrangement = Arrangement.Start,
+    ) {
+        RoundSquareImage(
+            imageUrl = playerModel.imageUrl,
+            modifier = Modifier
+                .padding(
+                    end = 16.dp,
+                    start = 12.dp,
+                )
+                .offset(y = (-3).dp)
+                .size(48.dp),
+        )
 
-    PlayerNameAndNickname(
-        playerModel = playerModel,
-        isFirstTeam = false,
-        modifier = Modifier.padding(
-            top = 15.dp,
-            end = 8.dp,
-            bottom = 8.dp,
-        ),
-    )
+        PlayerNameAndNickname(
+            playerModel = playerModel,
+            isFirstTeam = false,
+            modifier = Modifier
+                .padding(
+                    top = 15.dp,
+                    end = 8.dp,
+                    bottom = 8.dp,
+                )
+                .weight(1f),
+        )
+    }
 }
 
 @Preview

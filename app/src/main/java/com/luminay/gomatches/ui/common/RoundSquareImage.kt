@@ -1,11 +1,12 @@
 package com.luminay.gomatches.ui.common
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -17,33 +18,31 @@ import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getTeamMock
-import com.luminay.gomatches.theme.Gray100
 
 @Composable
 fun RoundSquareImage(
     imageUrl: String,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier
-            .background(
-                color = Gray100,
-                shape = RoundedCornerShape(8.dp),
-            )
-            .size(48.dp),
-    ) {
+    Box {
+        val imageRequestBuilder = ImageRequest.Builder(LocalContext.current)
+            .crossfade(true)
+            .data(imageUrl)
+            .diskCacheKey(imageUrl)
+            .networkCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .build()
+
         AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .crossfade(true)
-                .data(imageUrl)
-                .diskCacheKey(imageUrl)
-                .networkCachePolicy(CachePolicy.ENABLED)
-                .diskCachePolicy(CachePolicy.ENABLED)
-                .memoryCachePolicy(CachePolicy.ENABLED)
-                .build(),
+            modifier = modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(8.dp)),
+            model = if (imageUrl.isNotEmpty()) imageRequestBuilder else null,
             contentDescription = stringResource(id = R.string.image_label),
             placeholder = painterResource(id = R.drawable.ic_round_square),
-            contentScale = ContentScale.Fit,
+            error = painterResource(id = R.drawable.ic_round_square),
+            contentScale = ContentScale.FillBounds,
         )
     }
 }
@@ -53,5 +52,6 @@ fun RoundSquareImage(
 private fun RoundSquareImagePreview() {
     RoundSquareImage(
         imageUrl = getTeamMock().imageUrl,
+        modifier = Modifier.size(48.dp)
     )
 }

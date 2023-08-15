@@ -102,7 +102,11 @@ fun MatchesStatus(
                 matchesList?.let {
                     MatchesList(
                         matches = it.sortByScheduledDate(),
-                        onMatchClick = onMatchClick,
+                        onMatchClick = {  matchModel ->
+                            if (matchModel.opponents.isNotEmpty()) {
+                                onMatchClick(matchModel)
+                            }
+                        },
                         modifier = modifier,
                     )
                 } ?: run {
@@ -160,7 +164,7 @@ fun ErrorMessage(
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = stringResource(id = R.string.loading_error),
+            text = stringResource(id = R.string.loading_matches_error),
             textAlign = TextAlign.Center,
             color = Color.White,
         )

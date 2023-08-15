@@ -3,12 +3,8 @@ package com.luminay.gomatches.features.matches.matchlist
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.constants.EMPTY
-import com.example.core.constants.TBD
 import com.example.core.models.Resource
 import com.example.domain.models.MatchModel
-import com.example.domain.models.OpponentModel
-import com.example.domain.models.TeamModel
 import com.example.domain.usecases.IGetMatchesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -42,37 +38,4 @@ class MatchListViewModel @Inject constructor(
             _matches.value = result
         }
     }
-
-    fun getOpponentsInfo(
-        opponents: List<OpponentModel>,
-    ): Pair<TeamModel, TeamModel> =
-        when (opponents.size) {
-            0 -> {
-                Pair(
-                    getEmptyTeamModel(),
-                    getEmptyTeamModel(),
-                )
-            }
-
-            1 -> {
-                Pair(
-                    opponents.first().opponent,
-                    getEmptyTeamModel(),
-                )
-            }
-
-            else -> {
-                Pair(
-                    opponents.first().opponent,
-                    opponents[1].opponent,
-                )
-            }
-        }
-
-    private fun getEmptyTeamModel(): TeamModel = TeamModel(
-        id = -1,
-        name = TBD,
-        imageUrl = EMPTY,
-        slug = EMPTY,
-    )
 }

@@ -7,6 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.core.constants.TBD
@@ -29,6 +30,8 @@ fun PlayerNameAndNickname(
             color = Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.W700,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
         )
 
         Text(
@@ -39,6 +42,8 @@ fun PlayerNameAndNickname(
             },
             color = Blue80,
             fontSize = 12.sp,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
         )
     }
 }

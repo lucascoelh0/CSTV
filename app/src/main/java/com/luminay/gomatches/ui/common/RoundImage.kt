@@ -18,18 +18,21 @@ fun RoundImage(
     imageUrl: String,
     modifier: Modifier = Modifier,
 ) {
+    val imageRequestBuilder = ImageRequest.Builder(LocalContext.current)
+        .crossfade(true)
+        .data(imageUrl)
+        .diskCacheKey(imageUrl)
+        .networkCachePolicy(CachePolicy.ENABLED)
+        .diskCachePolicy(CachePolicy.ENABLED)
+        .memoryCachePolicy(CachePolicy.ENABLED)
+        .build()
+
     AsyncImage(
-        model = ImageRequest.Builder(LocalContext.current)
-            .crossfade(true)
-            .data(imageUrl)
-            .diskCacheKey(imageUrl)
-            .networkCachePolicy(CachePolicy.ENABLED)
-            .diskCachePolicy(CachePolicy.ENABLED)
-            .memoryCachePolicy(CachePolicy.ENABLED)
-            .build(),
-        contentDescription = stringResource(id = R.string.image_label),
         modifier = modifier,
+        model = if (imageUrl.isNotEmpty()) imageRequestBuilder else null,
+        contentDescription = stringResource(id = R.string.image_label),
         placeholder = painterResource(id = R.drawable.ic_team_placeholder),
+        error = painterResource(id = R.drawable.ic_team_placeholder),
         contentScale = ContentScale.Fit,
     )
 }
