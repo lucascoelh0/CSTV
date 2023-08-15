@@ -4,6 +4,7 @@ object Dependencies {
         const val coreKtx = "androidx.core:core-ktx:${Version.coreKtx}"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycleRuntimeKtx}"
         const val appcompat = "androidx.appcompat:appcompat:${Version.appcompat}"
+        const val splashScreen = "androidx.core:core-splashscreen:${Version.splashScreen}"
     }
 
     object Compose {

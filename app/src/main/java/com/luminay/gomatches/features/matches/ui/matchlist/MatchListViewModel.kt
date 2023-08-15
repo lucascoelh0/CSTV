@@ -22,6 +22,9 @@ class MatchListViewModel @Inject constructor(
     private val getMatchesUseCase: IGetMatchesUseCase,
 ) : ViewModel() {
 
+    private val mutableStateFlow = MutableStateFlow(true)
+    val isFirstLoadDone = mutableStateFlow.asStateFlow()
+
     private val _matches = MutableStateFlow<Resource<List<MatchModel>>>(Resource.loading(null))
     val matches: Flow<Resource<List<MatchModel>>> = _matches.asStateFlow()
 
@@ -52,6 +55,7 @@ class MatchListViewModel @Inject constructor(
                 }
                 _matches.value = result
                 isPageLoading = false
+                mutableStateFlow.value = false
             }
         }
     }

@@ -80,6 +80,7 @@ dependencies {
     implementation(Dependencies.Google.gson)
     implementation(Dependencies.Libraries.networkResponseAdapter)
     implementation(Dependencies.Libraries.composeDestinationsCore)
+    implementation(Dependencies.AndroidX.splashScreen)
     ksp(Dependencies.Libraries.composeDestinationsKsp)
     kapt(Dependencies.Hilt.hiltCompiler)
     testImplementation(Dependencies.Test.junit)

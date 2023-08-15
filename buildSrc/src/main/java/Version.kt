@@ -12,6 +12,7 @@ object Version {
     const val hiltNavigationCompose = "1.0.0"
     const val coil = "2.1.0"
     const val appcompat = "1.6.1"
+    const val splashScreen = "1.0.1"
     const val material = "1.9.0"
     const val composeShimmer = "1.0.5"
     const val compose = "1.4.2"
