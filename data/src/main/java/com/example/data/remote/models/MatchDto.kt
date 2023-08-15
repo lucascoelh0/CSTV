@@ -9,8 +9,8 @@ data class MatchDto(
     val league: LeagueDto? = null,
     val serie: SerieDto? = null,
     val opponents: List<OpponentDto>? = null,
-    @SerializedName("scheduled_at")
-    val scheduledAt: String? = null,
+    @SerializedName("begin_at")
+    val beginAt: String? = null,
     val status: String? = null,
 )
 
@@ -19,7 +19,7 @@ fun MatchDto.toModel() = MatchModel(
     league = league?.toModel() ?: LeagueDto().toModel(),
     serie = serie?.toModel() ?: SerieDto().toModel(),
     opponents = opponents?.toModel() ?: emptyList(),
-    scheduledAt = scheduledAt.orEmpty(),
+    beginAt = beginAt.orEmpty(),
     status = MatchStatus.get(status.orEmpty()),
 )
 

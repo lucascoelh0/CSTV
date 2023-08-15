@@ -40,7 +40,7 @@ fun TimeLabel(
         Text(
             text = when (matchStatus) {
                 MatchStatus.RUNNING -> stringResource(id = R.string.now)
-                MatchStatus.NOT_STARTED -> TimeUtils.formatScheduledDate(text)
+                MatchStatus.NOT_STARTED -> TimeUtils.formatBeginDate(text)
                 else -> stringResource(id = R.string.finished)
             },
             modifier = Modifier,

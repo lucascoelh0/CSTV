@@ -5,13 +5,14 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 
 object TimeUtils {
 
-    private const val ISO_8601_DATE_TIME_UTC = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    private const val UTC_STRING = "UTC"
+    private const val ISO_8601_DATE_TIME_UTC = "yyyy-MM-dd'T'HH:mm:ssXXX"
+    private const val YEAR_MONTH_DATE = "yyyy-MM-dd"
     private const val HOUR_MINUTE = "HH:mm"
     private const val DAY_MONTH_HOUR_MINUTE = "dd.MM HH:mm"
     private const val TODAY = "Hoje"
@@ -23,19 +24,20 @@ object TimeUtils {
     private const val SATURDAY = "Sáb"
     private const val SUNDAY = "Dom"
 
-    fun formatScheduledDate(date: String): String {
+    fun formatBeginDate(date: String): String {
         val formatter = DateTimeFormatter.ofPattern(ISO_8601_DATE_TIME_UTC)
-        val dateTime = LocalDateTime.parse(date, formatter)
-        val today = LocalDate.now(ZoneId.of(UTC_STRING))
+        val dateTimeUTC = ZonedDateTime.parse(date, formatter)
+        val dateTimeLocal = dateTimeUTC.withZoneSameInstant(ZoneId.systemDefault())
+        val today = LocalDate.now(ZoneId.systemDefault())
         val endOfWeek = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY))
 
         return when {
-            dateTime.toLocalDate() == today -> {
-                "$TODAY, ${dateTime.format(DateTimeFormatter.ofPattern(HOUR_MINUTE))}"
+            dateTimeLocal.toLocalDate() == today -> {
+                "$TODAY, ${dateTimeLocal.format(DateTimeFormatter.ofPattern(HOUR_MINUTE))}"
             }
 
-            dateTime.toLocalDate().isAfter(today) && dateTime.toLocalDate().isBefore(endOfWeek.plusDays(1)) -> {
-                val abbreviatedDayName = when (dateTime.dayOfWeek) {
+            dateTimeLocal.toLocalDate().isAfter(today) && dateTimeLocal.toLocalDate().isBefore(endOfWeek.plusDays(1)) -> {
+                val abbreviatedDayName = when (dateTimeLocal.dayOfWeek) {
                     DayOfWeek.MONDAY -> MONDAY
                     DayOfWeek.TUESDAY -> TUESDAY
                     DayOfWeek.WEDNESDAY -> WEDNESDAY
@@ -44,16 +46,24 @@ object TimeUtils {
                     DayOfWeek.SATURDAY -> SATURDAY
                     else -> SUNDAY
                 }
-                "$abbreviatedDayName, ${dateTime.format(DateTimeFormatter.ofPattern(HOUR_MINUTE))}"
+                "$abbreviatedDayName, ${dateTimeLocal.format(DateTimeFormatter.ofPattern(HOUR_MINUTE))}"
             }
 
-            else -> dateTime.format(DateTimeFormatter.ofPattern(DAY_MONTH_HOUR_MINUTE))
+            else -> dateTimeLocal.format(DateTimeFormatter.ofPattern(DAY_MONTH_HOUR_MINUTE))
         }
     }
 
     fun getTodayDateUtcString(): String {
         val formatter = DateTimeFormatter.ofPattern(ISO_8601_DATE_TIME_UTC)
         return formatter.format(LocalDateTime.now().atZone(ZoneOffset.UTC))
+    }
+
+    fun getDateRangeString(): String {
+        val formatter = DateTimeFormatter.ofPattern(YEAR_MONTH_DATE)
+        val today = LocalDate.now(ZoneOffset.UTC)
+        val yesterday = today.minusDays(1)
+        val finalDate = today.plusDays(6)
+        return "${formatter.format(yesterday)},${formatter.format(finalDate)}"
     }
 
     fun getCurrentWeekLastDayUtcString(): String {

@@ -1,6 +1,7 @@
 package com.example.data.remote.repositories
 
 import com.example.core.models.Resource
+import com.example.core.utils.TimeUtils
 import com.example.data.remote.api.MatchesApi
 import com.example.data.remote.models.toModel
 import com.example.data.remote.utils.handleNetworkResponse
@@ -16,7 +17,9 @@ class MatchesRepositoryImpl @Inject constructor(
 
     override fun getAllMatches(): Flow<Resource<List<MatchModel>>> {
         return flow {
-            val response = matchesApi.getAllMatches()
+            val response = matchesApi.getAllMatches(
+                range = TimeUtils.getDateRangeString()
+            )
             val resource = handleNetworkResponse(response) {
                 it.toModel()
             }

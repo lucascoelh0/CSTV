@@ -74,8 +74,8 @@ private fun PlayerDetailsContainerFirstTeam(
             imageUrl = playerModel.imageUrl,
             modifier = Modifier
                 .padding(end = 16.dp)
-                .offset(y = (-3).dp)
-                .size(48.dp),
+                .size(48.dp)
+                .offset(y = (-3).dp),
         )
     }
 }
@@ -95,8 +95,8 @@ private fun PlayerDetailsContainerSecondTeam(
                     end = 16.dp,
                     start = 12.dp,
                 )
-                .offset(y = (-3).dp)
-                .size(48.dp),
+                .size(48.dp)
+                .offset(y = (-3).dp),
         )
 
         PlayerNameAndNickname(

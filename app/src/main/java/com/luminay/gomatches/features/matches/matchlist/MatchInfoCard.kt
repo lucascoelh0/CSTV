@@ -37,7 +37,7 @@ fun MatchInfoCard(
     ) {
         Column {
             TimeLabel(
-                text = matchModel.scheduledAt,
+                text = matchModel.beginAt,
                 modifier = Modifier
                     .align(alignment = Alignment.End),
                 matchStatus = matchModel.status,

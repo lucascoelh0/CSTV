@@ -7,12 +7,15 @@ data class MatchModel(
     val league: LeagueModel,
     val serie: SerieModel,
     val opponents: List<OpponentModel>,
-    val scheduledAt: String,
+    val beginAt: String,
     val status: MatchStatus,
 ) : Serializable
 
-fun List<MatchModel>.sortByScheduledDate() = filter {
+fun List<MatchModel>.sortByStatusAndBeginAt() = filter {
     it.status != MatchStatus.UNKNOWN
-}.sortedBy {
-    it.scheduledAt
-}
+}.sortedWith(
+    compareBy(
+        { it.status.ordinal },
+        { it.beginAt },
+    )
+)

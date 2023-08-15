@@ -29,7 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.core.models.Status
 import com.example.domain.models.MatchModel
-import com.example.domain.models.sortByScheduledDate
+import com.example.domain.models.sortByStatusAndBeginAt
 import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getMatchModelMock
 import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
@@ -93,7 +93,7 @@ fun MatchesStatus(
             Status.LOADING -> {
                 CircularProgressIndicator(
                     modifier = modifier,
-                    color = Purple80,
+                    color = Color.White,
                 )
             }
 
@@ -101,7 +101,7 @@ fun MatchesStatus(
                 val matchesList = matches?.data
                 matchesList?.let {
                     MatchesList(
-                        matches = it.sortByScheduledDate(),
+                        matches = it.sortByStatusAndBeginAt(),
                         onMatchClick = {  matchModel ->
                             if (matchModel.opponents.isNotEmpty()) {
                                 onMatchClick(matchModel)

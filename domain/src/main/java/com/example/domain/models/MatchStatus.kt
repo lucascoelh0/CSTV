@@ -1,14 +1,14 @@
 package com.example.domain.models
 
-enum class MatchStatus(val value: String) {
-    RUNNING("running"),
-    NOT_STARTED("not_started"),
-    FINISHED("FINISHED"),
-    UNKNOWN("unknown");
+enum class MatchStatus {
+    RUNNING,
+    NOT_STARTED,
+    FINISHED,
+    UNKNOWN;
 
     companion object {
         fun get(value: String) = values().firstOrNull {
-            it.value == value
+            it.name.contains(value, ignoreCase = true)
         } ?: UNKNOWN
     }
 }

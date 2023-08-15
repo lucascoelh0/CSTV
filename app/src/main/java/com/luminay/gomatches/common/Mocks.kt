@@ -39,7 +39,7 @@ fun getMatchModelMock() = MatchModel(
     league = getLeagueMock(),
     serie = getSerieMock(),
     opponents = emptyList(),
-    scheduledAt = TimeUtils.getTodayDateUtcString(),
+    beginAt = TimeUtils.getTodayDateUtcString(),
     status = MatchStatus.RUNNING,
 )
 

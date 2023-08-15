@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -151,7 +153,10 @@ fun MatchStatus(
                 teams?.data?.let {
                     MatchDetails(
                         matchModel = matchModel,
-                        players = matchDetailsViewModel.getTeamPlayersPair(it),
+                        players = matchDetailsViewModel.getTeamPlayersPair(
+                            matchModel = matchModel,
+                            teams = it,
+                        ),
                     )
                 } ?: run {
                     ErrorMessage(
@@ -179,6 +184,9 @@ fun MatchDetails(
     players: Pair<List<PlayerModel>, List<PlayerModel>>,
 ) {
     Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
     ) {
@@ -187,7 +195,7 @@ fun MatchDetails(
         )
 
         Text(
-            text = TimeUtils.formatScheduledDate(matchModel.scheduledAt),
+            text = TimeUtils.formatBeginDate(matchModel.beginAt),
             modifier = Modifier
                 .padding(top = 20.dp),
             color = Color.White,
@@ -255,7 +263,7 @@ fun ErrorMessage(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.padding(16.dp),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
