@@ -1,6 +1,7 @@
 package com.luminay.gomatches.features.matches.matchlist
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,9 +42,13 @@ import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getMatchModelMock
 import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
 import com.luminay.gomatches.theme.Purple80
+import com.luminay.gomatches.ui.common.pullrefresh.PullRefreshIndicator
+import com.luminay.gomatches.ui.common.pullrefresh.pullRefresh
+import com.luminay.gomatches.ui.common.pullrefresh.rememberPullRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
 
 @Destination
 @Composable
@@ -116,6 +125,7 @@ fun MatchesStatus(
                 } ?: run {
                     ErrorMessage(
                         onRetry = { matchListViewModel.fetchData() },
+                        message = stringResource(id = R.string.loading_matches_error),
                         modifier = modifier,
                     )
                 }
@@ -124,6 +134,7 @@ fun MatchesStatus(
             else -> {
                 ErrorMessage(
                     onRetry = { matchListViewModel.fetchData() },
+                    message = stringResource(id = R.string.loading_matches_error),
                     modifier = modifier,
                 )
             }
@@ -138,46 +149,84 @@ fun MatchesList(
     modifier: Modifier,
     matchListViewModel: MatchListViewModel = hiltViewModel(),
 ) {
+    val refreshScope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
     val pagingStatus by matchListViewModel.pagingStatus.collectAsStateWithLifecycle(initialValue = null)
+    var isRefreshing by remember { mutableStateOf(false) }
 
-    LazyColumn(
-        state = lazyListState,
-        modifier = modifier,
-        contentPadding = PaddingValues(
-            end = 24.dp,
-            bottom = 24.dp,
-            start = 24.dp,
-        ),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+    fun refresh() = refreshScope.launch {
+        isRefreshing = true
+        matchListViewModel.fetchData()
+    }
+
+    val state = rememberPullRefreshState(isRefreshing, ::refresh)
+
+    LaunchedEffect(matches) {
+        snapshotFlow { lazyListState.isScrolledToEnd() }
+            .filter { it }
+            .collect {
+                isRefreshing = false
+            }
+    }
+
+    Box(
+        modifier = modifier
+            .pullRefresh(state),
     ) {
-        items(items = matches) {
-            MatchInfoCard(
-                matchModel = it,
-                onClick = onMatchClick,
-            )
-        }
+        LazyColumn(
+            state = lazyListState,
+            contentPadding = PaddingValues(
+                end = 24.dp,
+                bottom = 24.dp,
+                start = 24.dp,
+            ),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            items(items = matches) {
+                MatchInfoCard(
+                    matchModel = it,
+                    onClick = onMatchClick,
+                )
+            }
 
-        item {
-            when (pagingStatus?.status) {
-                Status.LOADING -> {
-                    CircularProgressIndicator(
-                        modifier = modifier,
-                        color = Color.White,
-                    )
-                }
+            item {
+                when (pagingStatus?.status) {
+                    Status.LOADING -> {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 24.dp),
+                        ) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.align(Alignment.Center),
+                                color = Color.White,
+                            )
+                        }
+                    }
 
-                Status.ERROR -> {
-                    ErrorMessage(onRetry = {
-                        matchListViewModel.fetchNextPage()
-                    })
-                }
+                    Status.ERROR -> {
+                        ErrorMessage(
+                            onRetry = {
+                                matchListViewModel.fetchNextPage()
+                            },
+                            message = stringResource(id = R.string.loading_matches_error),
+                        )
+                    }
 
-                else -> {
+                    else -> {
 //                    Do nothing
+                    }
                 }
             }
         }
+
+        PullRefreshIndicator(
+            isRefreshing,
+            state,
+            Modifier.align(Alignment.TopCenter),
+            backgroundColor = Color.White,
+            contentColor = Purple80,
+        )
     }
 
     LaunchedEffect(lazyListState) {
@@ -194,6 +243,7 @@ fun LazyListState.isScrolledToEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.
 @Composable
 fun ErrorMessage(
     onRetry: () -> Unit,
+    message: String,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -203,7 +253,7 @@ fun ErrorMessage(
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = stringResource(id = R.string.loading_matches_error),
+            text = message,
             textAlign = TextAlign.Center,
             color = Color.White,
         )
@@ -234,10 +284,4 @@ private fun MatchesListPreview() {
         onMatchClick = {},
         modifier = Modifier.padding(24.dp),
     )
-}
-
-@Preview
-@Composable
-private fun ErrorMessagePreview() {
-    ErrorMessage(onRetry = {})
 }

@@ -29,38 +29,52 @@ class MatchListViewModel @Inject constructor(
     val pagingStatus: Flow<Resource<List<MatchModel>>> = _pagingStatus.asStateFlow()
 
     private var currentPage = 1
+    private var isPageLoading = false
 
     init {
         fetchData()
     }
 
-    fun fetchData() = viewModelScope.launch {
-        flow {
-            emit(Resource.loading(null))
-            emitAll(getMatchesUseCase(1))
-        }.catch {
-            Log.e("MatchListViewModel", "fetchData: ", it)
-        }.collect { result ->
-            if (result.status == Status.SUCCESS) {
-                currentPage++
+    fun fetchData() {
+        if (isPageLoading) return
+        isPageLoading = true
+        currentPage = 1
+
+        viewModelScope.launch {
+            flow {
+                emit(Resource.loading(null))
+                emitAll(getMatchesUseCase(1))
+            }.catch {
+                Log.e("MatchListViewModel", "fetchData: ", it)
+            }.collect { result ->
+                if (result.status == Status.SUCCESS) {
+                    currentPage++
+                }
+                _matches.value = result
+                isPageLoading = false
             }
-            _matches.value = result
         }
     }
 
-    fun fetchNextPage() = viewModelScope.launch {
-        flow {
-            emit(Resource.loading(null))
-            emitAll(getMatchesUseCase(currentPage))
-        }.catch {
-            Log.e("MatchListViewModel", "fetchNextPage: ", it)
-        }.collect { result ->
-            if (result.status == Status.SUCCESS && result.data?.isNotEmpty() == true) {
-                val updatedList = _matches.value.data.orEmpty() + result.data.orEmpty()
-                _matches.value = Resource.success(updatedList)
-                currentPage++
+    fun fetchNextPage() {
+        if (isPageLoading) return
+        isPageLoading = true
+
+        viewModelScope.launch {
+            flow {
+                emit(Resource.loading(null))
+                emitAll(getMatchesUseCase(currentPage))
+            }.catch {
+                Log.e("MatchListViewModel", "fetchNextPage: ", it)
+            }.collect { result ->
+                if (result.status == Status.SUCCESS && result.data?.isNotEmpty() == true) {
+                    val updatedList = _matches.value.data.orEmpty() + result.data.orEmpty()
+                    _matches.value = Resource.success(updatedList)
+                    currentPage++
+                }
+                _pagingStatus.value = result
+                isPageLoading = false
             }
-            _pagingStatus.value = result
         }
     }
 }
