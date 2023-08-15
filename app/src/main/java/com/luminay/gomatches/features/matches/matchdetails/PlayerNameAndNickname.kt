@@ -26,7 +26,7 @@ fun PlayerNameAndNickname(
         horizontalAlignment = if (isFirstTeam) Alignment.End else Alignment.Start,
     ) {
         Text(
-            text = playerModel.name.ifEmpty { TBD },
+            text = playerModel.name,
             color = Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.W700,
@@ -35,11 +35,7 @@ fun PlayerNameAndNickname(
         )
 
         Text(
-            text = if (playerModel.firstName.isNotEmpty() || playerModel.lastName.isNotEmpty()) {
-                "${playerModel.firstName} ${playerModel.lastName}"
-            } else {
-                TBD
-            },
+            text = "${playerModel.firstName} ${playerModel.lastName}",
             color = Blue80,
             fontSize = 12.sp,
             maxLines = 1,

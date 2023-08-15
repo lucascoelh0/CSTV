@@ -39,6 +39,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.core.models.Status
 import com.example.core.utils.TimeUtils
 import com.example.domain.models.MatchModel
+import com.example.domain.models.MatchStatus
 import com.example.domain.models.PlayerModel
 import com.luminay.gomatches.R
 import com.luminay.gomatches.common.getMatchModelMock
@@ -195,7 +196,11 @@ fun MatchDetails(
         )
 
         Text(
-            text = TimeUtils.formatBeginDate(matchModel.beginAt),
+            text = if (matchModel.status == MatchStatus.RUNNING) {
+                stringResource(id = R.string.now)
+            } else {
+                TimeUtils.formatBeginDate(matchModel.beginAt)
+            },
             modifier = Modifier
                 .padding(top = 20.dp),
             color = Color.White,
