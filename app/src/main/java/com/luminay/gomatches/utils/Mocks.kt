@@ -1,4 +1,4 @@
-package com.luminay.gomatches.common
+package com.luminay.gomatches.utils
 
 import com.example.core.constants.EMPTY
 import com.example.core.constants.TBD

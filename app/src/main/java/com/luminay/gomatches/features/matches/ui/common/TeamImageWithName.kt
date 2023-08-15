@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches
+package com.luminay.gomatches.features.matches.ui.common
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.domain.models.TeamModel
-import com.luminay.gomatches.common.getTeamMock
-import com.luminay.gomatches.ui.common.RoundImage
+import com.luminay.gomatches.utils.getTeamMock
+import com.luminay.gomatches.ui.common.images.RoundImage
 
 @Composable
 fun TeamImageWithName(

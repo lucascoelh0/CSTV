@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches
+package com.luminay.gomatches.features.matches.ui.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

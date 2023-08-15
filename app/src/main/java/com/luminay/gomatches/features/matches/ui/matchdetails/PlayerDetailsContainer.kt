@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.matchdetails
+package com.luminay.gomatches.features.matches.ui.matchdetails
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,9 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.domain.models.PlayerModel
-import com.luminay.gomatches.common.getPlayerModelMock
+import com.luminay.gomatches.utils.getPlayerModelMock
 import com.luminay.gomatches.theme.Purple80
-import com.luminay.gomatches.ui.common.RoundSquareImage
+import com.luminay.gomatches.ui.common.images.RoundSquareImage
 
 @Composable
 fun PlayerDetailsContainer(

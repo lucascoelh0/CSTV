@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.matchdetails
+package com.luminay.gomatches.features.matches.ui.matchdetails
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
@@ -10,9 +10,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.core.constants.TBD
 import com.example.domain.models.PlayerModel
-import com.luminay.gomatches.common.getPlayerModelMock
+import com.luminay.gomatches.utils.getPlayerModelMock
 import com.luminay.gomatches.theme.Blue80
 
 @Composable

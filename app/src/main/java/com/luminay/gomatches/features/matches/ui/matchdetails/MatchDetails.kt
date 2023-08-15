@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.matchdetails
+package com.luminay.gomatches.features.matches.ui.matchdetails
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -42,9 +42,9 @@ import com.example.domain.models.MatchModel
 import com.example.domain.models.MatchStatus
 import com.example.domain.models.PlayerModel
 import com.luminay.gomatches.R
-import com.luminay.gomatches.common.getMatchModelMock
-import com.luminay.gomatches.common.getPlayerModelMock
-import com.luminay.gomatches.features.matches.TeamVsTeam
+import com.luminay.gomatches.utils.getMatchModelMock
+import com.luminay.gomatches.utils.getPlayerModelMock
+import com.luminay.gomatches.features.matches.ui.common.TeamVsTeam
 import com.luminay.gomatches.theme.DarkBlue900
 import com.luminay.gomatches.theme.Purple80
 import com.ramcosta.composedestinations.annotation.Destination

@@ -1,4 +1,4 @@
-package com.luminay.gomatches.ui
+package com.luminay.gomatches
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable

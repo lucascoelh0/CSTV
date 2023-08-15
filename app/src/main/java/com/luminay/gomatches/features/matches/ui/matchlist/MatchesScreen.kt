@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.matchlist
+package com.luminay.gomatches.features.matches.ui.matchlist
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,7 +39,7 @@ import com.example.core.models.Status
 import com.example.domain.models.MatchModel
 import com.example.domain.models.sortByStatusAndBeginAt
 import com.luminay.gomatches.R
-import com.luminay.gomatches.common.getMatchModelMock
+import com.luminay.gomatches.utils.getMatchModelMock
 import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
 import com.luminay.gomatches.theme.Purple80
 import com.luminay.gomatches.ui.common.pullrefresh.PullRefreshIndicator

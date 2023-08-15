@@ -1,4 +1,4 @@
-package com.luminay.gomatches.ui.common
+package com.luminay.gomatches.ui.common.images
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,7 +19,7 @@ import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.luminay.gomatches.R
-import com.luminay.gomatches.common.getTeamMock
+import com.luminay.gomatches.utils.getTeamMock
 import com.luminay.gomatches.theme.Gray100
 
 @Composable

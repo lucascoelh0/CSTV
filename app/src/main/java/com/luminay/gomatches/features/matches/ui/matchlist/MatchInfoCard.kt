@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.matchlist
+package com.luminay.gomatches.features.matches.ui.matchlist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.domain.models.MatchModel
-import com.luminay.gomatches.common.getMatchModelMock
-import com.luminay.gomatches.features.matches.TeamVsTeam
-import com.luminay.gomatches.features.matches.TimeLabel
+import com.luminay.gomatches.utils.getMatchModelMock
+import com.luminay.gomatches.features.matches.ui.common.TeamVsTeam
+import com.luminay.gomatches.features.matches.ui.common.TimeLabel
 import com.luminay.gomatches.theme.Gray30
 import com.luminay.gomatches.theme.Purple80
 

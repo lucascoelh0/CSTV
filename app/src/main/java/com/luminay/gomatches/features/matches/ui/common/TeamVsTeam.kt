@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches
+package com.luminay.gomatches.features.matches.ui.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.example.domain.models.MatchModel
 import com.example.domain.models.getOpponentsInfo
 import com.luminay.gomatches.R
-import com.luminay.gomatches.common.getMatchModelMock
+import com.luminay.gomatches.utils.getMatchModelMock
 import com.luminay.gomatches.theme.White50
 
 @Composable

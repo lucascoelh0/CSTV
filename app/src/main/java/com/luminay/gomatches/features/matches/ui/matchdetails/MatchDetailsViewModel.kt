@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.matchdetails
+package com.luminay.gomatches.features.matches.ui.matchdetails
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
