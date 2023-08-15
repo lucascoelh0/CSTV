@@ -144,7 +144,7 @@ fun MatchesStatus(
 fun MatchesList(
     matches: List<MatchModel>,
     onMatchClick: (MatchModel) -> Unit,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     matchListViewModel: MatchListViewModel = hiltViewModel(),
 ) {
     val refreshScope = rememberCoroutineScope()
