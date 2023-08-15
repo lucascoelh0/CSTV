@@ -1,4 +1,4 @@
-package com.luminay.gomatches.navigation
+package com.luminay.gomatches.features.matches.navigation
 
 import com.example.domain.models.MatchModel
 import com.google.gson.Gson
