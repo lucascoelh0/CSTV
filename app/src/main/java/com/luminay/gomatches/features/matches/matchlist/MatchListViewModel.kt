@@ -25,8 +25,8 @@ class MatchListViewModel @Inject constructor(
     private val _matches = MutableStateFlow<Resource<List<MatchModel>>>(Resource.loading(null))
     val matches: Flow<Resource<List<MatchModel>>> = _matches.asStateFlow()
 
-    private val _pagingStatus = MutableStateFlow<Resource<List<MatchModel>>>(Resource.loading(null))
-    val pagingStatus: Flow<Resource<List<MatchModel>>> = _pagingStatus.asStateFlow()
+    private val _paginationStatus = MutableStateFlow<Resource<List<MatchModel>>>(Resource.loading(null))
+    val paginationStatus: Flow<Resource<List<MatchModel>>> = _paginationStatus.asStateFlow()
 
     private var currentPage = 1
     private var isPageLoading = false
@@ -72,7 +72,7 @@ class MatchListViewModel @Inject constructor(
                     _matches.value = Resource.success(updatedList)
                     currentPage++
                 }
-                _pagingStatus.value = result
+                _paginationStatus.value = result
                 isPageLoading = false
             }
         }

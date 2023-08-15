@@ -151,7 +151,7 @@ fun MatchesList(
 ) {
     val refreshScope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
-    val pagingStatus by matchListViewModel.pagingStatus.collectAsStateWithLifecycle(initialValue = null)
+    val paginationStatus by matchListViewModel.paginationStatus.collectAsStateWithLifecycle(initialValue = null)
     var isRefreshing by remember { mutableStateOf(false) }
 
     fun refresh() = refreshScope.launch {
@@ -190,7 +190,7 @@ fun MatchesList(
             }
 
             item {
-                when (pagingStatus?.status) {
+                when (paginationStatus?.status) {
                     Status.LOADING -> {
                         Box(
                             modifier = Modifier
