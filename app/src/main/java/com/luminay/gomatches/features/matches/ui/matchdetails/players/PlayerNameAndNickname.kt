@@ -1,4 +1,4 @@
-package com.luminay.gomatches.features.matches.ui.matchdetails
+package com.luminay.gomatches.features.matches.ui.matchdetails.players
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text

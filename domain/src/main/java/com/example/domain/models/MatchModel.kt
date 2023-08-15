@@ -19,3 +19,13 @@ fun List<MatchModel>.sortByStatusAndBeginAt() = filter {
         { it.beginAt },
     )
 )
+
+fun MatchModel.leagueSerieName(): String {
+    var leagueSerieName = league.name
+
+    return if (serie.name.isNotEmpty()) {
+        "$leagueSerieName - ${serie.name}"
+    } else {
+        leagueSerieName
+    }
+}

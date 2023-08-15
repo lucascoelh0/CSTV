@@ -1,26 +1,14 @@
 package com.luminay.gomatches.features.matches.ui.matchdetails
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -30,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,11 +29,12 @@ import com.example.domain.models.MatchModel
 import com.example.domain.models.MatchStatus
 import com.example.domain.models.PlayerModel
 import com.luminay.gomatches.R
+import com.luminay.gomatches.features.matches.ui.common.TeamVsTeam
+import com.luminay.gomatches.features.matches.ui.matchdetails.players.PlayersTable
+import com.luminay.gomatches.theme.DarkBlue900
+import com.luminay.gomatches.ui.common.messages.ErrorMessage
 import com.luminay.gomatches.utils.getMatchModelMock
 import com.luminay.gomatches.utils.getPlayerModelMock
-import com.luminay.gomatches.features.matches.ui.common.TeamVsTeam
-import com.luminay.gomatches.theme.DarkBlue900
-import com.luminay.gomatches.theme.Purple80
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -79,47 +67,6 @@ fun MatchDetailsScreen(
         MatchStatus(
             matchModel = matchModel,
         )
-    }
-}
-
-@Composable
-private fun TopBar(
-    matchModel: MatchModel,
-    onBackPressed: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
-            contentDescription = stringResource(id = R.string.back),
-            modifier = Modifier
-                .size(24.dp)
-                .clickable {
-                    onBackPressed()
-                },
-            tint = Color.White,
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        var leagueSerieName = matchModel.league.name
-
-        if (matchModel.serie.name.isNotEmpty()) {
-            leagueSerieName += " - ${matchModel.serie.name}"
-        }
-
-        Text(
-            text = leagueSerieName,
-            color = Color.White,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
     }
 }
 
@@ -161,6 +108,7 @@ fun MatchStatus(
                     )
                 } ?: run {
                     ErrorMessage(
+                        message = stringResource(id = R.string.loading_match_details_error),
                         onRetry = {
                             matchDetailsViewModel.fetchTeamsDetails(matchModel)
                         },
@@ -170,6 +118,7 @@ fun MatchStatus(
 
             else -> {
                 ErrorMessage(
+                    message = stringResource(id = R.string.loading_match_details_error),
                     onRetry = {
                         matchDetailsViewModel.fetchTeamsDetails(matchModel)
                     },
@@ -208,104 +157,10 @@ fun MatchDetails(
             fontWeight = FontWeight.W700,
         )
 
-        PlayersTableRow(
+        PlayersTable(
             players = players,
         )
     }
-}
-
-@Composable
-fun PlayersTableRow(
-    players: Pair<List<PlayerModel>, List<PlayerModel>>,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 22.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Column(
-            Modifier.weight(1f),
-        ) {
-            TeamPlayersList(
-                players = players.first,
-                isFirstTeam = true,
-            )
-        }
-
-        Spacer(modifier = Modifier.width(13.dp))
-
-        Column(
-            modifier = Modifier
-                .weight(1f),
-        ) {
-            TeamPlayersList(
-                players = players.second,
-                isFirstTeam = false,
-            )
-        }
-    }
-}
-
-@Composable
-fun TeamPlayersList(
-    players: List<PlayerModel>,
-    isFirstTeam: Boolean,
-) {
-    players.forEach { player ->
-        PlayerDetailsContainer(
-            playerModel = player,
-            isFirstTeam = isFirstTeam,
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-    }
-}
-
-@Composable
-fun ErrorMessage(
-    onRetry: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Text(
-            text = stringResource(id = R.string.loading_match_details_error),
-            color = Color.White,
-        )
-
-        Button(
-            onClick = onRetry,
-            modifier = Modifier.padding(top = 16.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Purple80,
-            ),
-        ) {
-            Text(
-                text = stringResource(id = R.string.try_again),
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun TopBarPreview() {
-    TopBar(
-        matchModel = getMatchModelMock(),
-        onBackPressed = {},
-    )
-}
-
-@Preview
-@Composable
-private fun ErrorMessagePreview() {
-    ErrorMessage(
-        onRetry = {},
-    )
 }
 
 @Preview

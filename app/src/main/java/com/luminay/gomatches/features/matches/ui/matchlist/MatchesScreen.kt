@@ -11,8 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -29,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,12 +36,13 @@ import com.example.core.models.Status
 import com.example.domain.models.MatchModel
 import com.example.domain.models.sortByStatusAndBeginAt
 import com.luminay.gomatches.R
-import com.luminay.gomatches.utils.getMatchModelMock
 import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
 import com.luminay.gomatches.theme.Purple80
+import com.luminay.gomatches.ui.common.messages.ErrorMessage
 import com.luminay.gomatches.ui.common.pullrefresh.PullRefreshIndicator
 import com.luminay.gomatches.ui.common.pullrefresh.pullRefresh
 import com.luminay.gomatches.ui.common.pullrefresh.rememberPullRefreshState
+import com.luminay.gomatches.utils.getMatchModelMock
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.filter
@@ -239,39 +237,6 @@ fun MatchesList(
 }
 
 fun LazyListState.isScrolledToEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
-
-@Composable
-fun ErrorMessage(
-    onRetry: () -> Unit,
-    message: String,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Text(
-            text = message,
-            textAlign = TextAlign.Center,
-            color = Color.White,
-        )
-
-        Button(
-            onClick = onRetry,
-            modifier = Modifier.padding(top = 16.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Purple80,
-            ),
-        ) {
-            Text(
-                text = stringResource(id = R.string.try_again),
-                color = Color.White,
-            )
-        }
-    }
-}
 
 @Preview
 @Composable
