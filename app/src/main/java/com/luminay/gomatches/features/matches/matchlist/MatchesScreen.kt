@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
@@ -15,7 +16,9 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +39,7 @@ import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
 import com.luminay.gomatches.theme.Purple80
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.flow.filter
 
 @Destination
 @Composable
@@ -102,7 +106,7 @@ fun MatchesStatus(
                 matchesList?.let {
                     MatchesList(
                         matches = it.sortByStatusAndBeginAt(),
-                        onMatchClick = {  matchModel ->
+                        onMatchClick = { matchModel ->
                             if (matchModel.opponents.isNotEmpty()) {
                                 onMatchClick(matchModel)
                             }
@@ -132,9 +136,13 @@ fun MatchesList(
     matches: List<MatchModel>,
     onMatchClick: (MatchModel) -> Unit,
     modifier: Modifier,
+    matchListViewModel: MatchListViewModel = hiltViewModel(),
 ) {
+    val lazyListState = rememberLazyListState()
+    val pagingStatus by matchListViewModel.pagingStatus.collectAsStateWithLifecycle(initialValue = null)
+
     LazyColumn(
-        state = rememberLazyListState(),
+        state = lazyListState,
         modifier = modifier,
         contentPadding = PaddingValues(
             end = 24.dp,
@@ -149,8 +157,39 @@ fun MatchesList(
                 onClick = onMatchClick,
             )
         }
+
+        item {
+            when (pagingStatus?.status) {
+                Status.LOADING -> {
+                    CircularProgressIndicator(
+                        modifier = modifier,
+                        color = Color.White,
+                    )
+                }
+
+                Status.ERROR -> {
+                    ErrorMessage(onRetry = {
+                        matchListViewModel.fetchNextPage()
+                    })
+                }
+
+                else -> {
+//                    Do nothing
+                }
+            }
+        }
+    }
+
+    LaunchedEffect(lazyListState) {
+        snapshotFlow { lazyListState.isScrolledToEnd() }
+            .filter { it }
+            .collect {
+                matchListViewModel.fetchNextPage()
+            }
     }
 }
+
+fun LazyListState.isScrolledToEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
 
 @Composable
 fun ErrorMessage(

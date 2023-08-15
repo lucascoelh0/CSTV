@@ -6,5 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 fun interface IMatchesRepository {
 
-    fun getAllMatches(): Flow<Resource<List<MatchModel>>>
+    fun getAllMatches(
+        page: Int,
+    ): Flow<Resource<List<MatchModel>>>
 }

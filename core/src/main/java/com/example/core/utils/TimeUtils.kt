@@ -12,7 +12,6 @@ import java.time.temporal.TemporalAdjusters
 object TimeUtils {
 
     private const val ISO_8601_DATE_TIME_UTC = "yyyy-MM-dd'T'HH:mm:ssXXX"
-    private const val YEAR_MONTH_DATE = "yyyy-MM-dd"
     private const val HOUR_MINUTE = "HH:mm"
     private const val DAY_MONTH_HOUR_MINUTE = "dd.MM HH:mm"
     private const val TODAY = "Hoje"
@@ -36,7 +35,8 @@ object TimeUtils {
                 "$TODAY, ${dateTimeLocal.format(DateTimeFormatter.ofPattern(HOUR_MINUTE))}"
             }
 
-            dateTimeLocal.toLocalDate().isAfter(today) && dateTimeLocal.toLocalDate().isBefore(endOfWeek.plusDays(1)) -> {
+            dateTimeLocal.toLocalDate().isAfter(today) && dateTimeLocal.toLocalDate()
+                .isBefore(endOfWeek.plusDays(1)) -> {
                 val abbreviatedDayName = when (dateTimeLocal.dayOfWeek) {
                     DayOfWeek.MONDAY -> MONDAY
                     DayOfWeek.TUESDAY -> TUESDAY
@@ -56,14 +56,6 @@ object TimeUtils {
     fun getTodayDateUtcString(): String {
         val formatter = DateTimeFormatter.ofPattern(ISO_8601_DATE_TIME_UTC)
         return formatter.format(LocalDateTime.now().atZone(ZoneOffset.UTC))
-    }
-
-    fun getDateRangeString(): String {
-        val formatter = DateTimeFormatter.ofPattern(YEAR_MONTH_DATE)
-        val today = LocalDate.now(ZoneOffset.UTC)
-        val yesterday = today.minusDays(1)
-        val finalDate = today.plusDays(6)
-        return "${formatter.format(yesterday)},${formatter.format(finalDate)}"
     }
 
     fun getCurrentWeekLastDayUtcString(): String {

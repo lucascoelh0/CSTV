@@ -12,6 +12,5 @@ interface MatchesApi {
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 50,
         @Query("sort") sort: String = "-status,begin_at",
-        @Query("range[begin_at]") range: String,
     ): NetworkResponse<List<MatchDto>, GenericErrorResponse>
 }

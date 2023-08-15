@@ -5,5 +5,7 @@ import com.example.domain.models.MatchModel
 import kotlinx.coroutines.flow.Flow
 
 fun interface IGetMatchesUseCase {
-    operator fun invoke(): Flow<Resource<List<MatchModel>>>
+    operator fun invoke(
+        page: Int,
+    ): Flow<Resource<List<MatchModel>>>
 }

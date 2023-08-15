@@ -9,7 +9,9 @@ import javax.inject.Inject
 class GetMatchesUseCaseImpl @Inject constructor(
     private val matchesRepository: IMatchesRepository,
 ) : IGetMatchesUseCase {
-    override fun invoke(): Flow<Resource<List<MatchModel>>> {
-        return matchesRepository.getAllMatches()
+    override fun invoke(
+        page: Int,
+    ): Flow<Resource<List<MatchModel>>> {
+        return matchesRepository.getAllMatches(page)
     }
 }
