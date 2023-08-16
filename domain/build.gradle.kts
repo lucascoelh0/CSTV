@@ -40,6 +40,7 @@ dependencies {
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.appcompat)
     implementation(Dependencies.Hilt.hiltAndroid)
+    implementation(Dependencies.Libraries.moshi)
     kapt(Dependencies.Hilt.hiltCompiler)
     implementation(Dependencies.Hilt.hiltPlugin)
     testImplementation(Dependencies.Test.junit)

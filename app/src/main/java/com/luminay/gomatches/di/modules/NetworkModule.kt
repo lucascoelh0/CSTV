@@ -5,10 +5,10 @@ import com.example.data.remote.api.MatchesApi
 import com.example.data.remote.api.TeamsApi
 import com.example.data.remote.interceptors.CacheInterceptor
 import com.example.data.remote.interceptors.RequestInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.luminay.gomatches.BuildConfig
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,10 +18,10 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -37,7 +37,9 @@ internal class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesGson(): Gson = GsonBuilder().setLenient().create()
+    fun providesMoshi(): Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @Singleton
     @Provides
@@ -73,26 +75,26 @@ internal class NetworkModule {
     @Provides
     fun providesRetrofit(
         baseUrl: String,
-        gson: Gson,
+        moshi: Moshi,
         client: OkHttpClient,
         networkResponseAdapterFactory: NetworkResponseAdapterFactory
     ): Retrofit =
         getRetrofit(
             baseUrl,
-            gson,
+            moshi,
             client,
             networkResponseAdapterFactory,
         )
 
     private fun getRetrofit(
         baseUrl: String,
-        gson: Gson,
+        moshi: Moshi,
         client: OkHttpClient,
         networkResponseAdapterFactory: NetworkResponseAdapterFactory
     ): Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(client)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(networkResponseAdapterFactory)
         .build()
 

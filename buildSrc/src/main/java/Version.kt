@@ -22,7 +22,7 @@ object Version {
     const val viewModelCompose = "1.0.0-alpha07"
     const val okhttp = "4.11.0"
     const val retrofit = "2.9.0"
-    const val gson = "2.10.1"
+    const val moshi = "1.14.0"
     const val networkResponseAdapter = "4.1.0"
     const val composeDestinations = "1.8.42-beta"
     const val mockk = "1.13.5"

@@ -1,11 +1,13 @@
 package com.example.data.remote.models
 
 import com.example.domain.models.LeagueModel
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class LeagueDto(
     val id: Int? = null,
-    @SerializedName("image_url")
+    @Json(name = "image_url")
     val imageUrl: String? = null,
     val name: String? = null,
 )

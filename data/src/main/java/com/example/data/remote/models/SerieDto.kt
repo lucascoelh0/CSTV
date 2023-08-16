@@ -1,7 +1,9 @@
 package com.example.data.remote.models
 
 import com.example.domain.models.SerieModel
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class SerieDto(
     val name: String? = null,
 )

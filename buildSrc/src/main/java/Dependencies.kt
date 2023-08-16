@@ -26,7 +26,6 @@ object Dependencies {
 
     object Google {
         const val material = "com.google.android.material:material:${Version.material}"
-        const val gson = "com.google.code.gson:gson:${Version.gson}"
     }
 
     object Hilt {
@@ -44,13 +43,15 @@ object Dependencies {
             "io.github.raamcosta.compose-destinations:core:${Version.composeDestinations}"
         const val composeDestinationsKsp =
             "io.github.raamcosta.compose-destinations:ksp:${Version.composeDestinations}"
+        const val moshi = "com.squareup.moshi:moshi-kotlin:${Version.moshi}"
+        const val moshiKapt = "com.squareup.moshi:moshi-kotlin-codegen:${Version.moshi}"
     }
 
     object SquareUp {
         const val okhttp = "com.squareup.okhttp3:okhttp:${Version.okhttp}"
         const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Version.okhttp}"
         const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
-        const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
+        const val retrofitConverterMoshi = "com.squareup.retrofit2:converter-moshi:${Version.retrofit}"
     }
 
     object Test {

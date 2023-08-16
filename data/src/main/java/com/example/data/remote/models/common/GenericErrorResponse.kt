@@ -1,10 +1,10 @@
 package com.example.data.remote.models.common
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class GenericErrorResponse(
-    @SerializedName("status_message")
+    @Json(name = "status_message")
     val message: String? = null,
-    @SerializedName("status_code")
+    @Json(name = "status_code")
     val statusCode: Int = 0,
 )

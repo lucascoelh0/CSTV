@@ -2,14 +2,16 @@ package com.example.data.remote.models
 
 import com.example.domain.models.MatchModel
 import com.example.domain.models.MatchStatus
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class MatchDto(
     val id: Int? = null,
     val league: LeagueDto? = null,
     val serie: SerieDto? = null,
     val opponents: List<OpponentDto>? = null,
-    @SerializedName("begin_at")
+    @Json(name = "begin_at")
     val beginAt: String? = null,
     val status: String? = null,
 )

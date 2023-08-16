@@ -1,7 +1,9 @@
 package com.example.domain.models
 
+import com.squareup.moshi.JsonClass
 import java.io.Serializable
 
+@JsonClass(generateAdapter = true)
 data class MatchModel(
     val id: Int,
     val league: LeagueModel,
@@ -21,7 +23,7 @@ fun List<MatchModel>.sortByStatusAndBeginAt() = filter {
 )
 
 fun MatchModel.leagueSerieName(): String {
-    var leagueSerieName = league.name
+    val leagueSerieName = league.name
 
     return if (serie.name.isNotEmpty()) {
         "$leagueSerieName - ${serie.name}"
