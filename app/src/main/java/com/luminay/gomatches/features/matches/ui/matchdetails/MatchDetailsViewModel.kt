@@ -1,26 +1,24 @@
 package com.luminay.gomatches.features.matches.ui.matchdetails
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.models.Resource
 import com.example.domain.models.MatchModel
 import com.example.domain.models.PlayerModel
 import com.example.domain.models.TeamDetailsModel
-import com.example.domain.usecases.GetTeamDetailsUseCaseImpl
+import com.example.domain.usecases.IGetTeamDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class MatchDetailsViewModel @Inject constructor(
-    private val getTeamPlayersUseCaseImpl: GetTeamDetailsUseCaseImpl,
+    private val getTeamDetailsUseCase: IGetTeamDetailsUseCase,
 ) : ViewModel() {
 
     private val _teams = MutableStateFlow<Resource<List<TeamDetailsModel>>>(Resource.loading(null))
@@ -31,9 +29,7 @@ class MatchDetailsViewModel @Inject constructor(
     ) = viewModelScope.launch {
         flow {
             emit(Resource.loading(null))
-            emitAll(getTeamPlayersUseCaseImpl(getTeamsIds(matchModel)))
-        }.catch {
-            Log.e("MatchDetailsViewModel", "fetchTeamsDetails: ", it)
+            emitAll(getTeamDetailsUseCase(getTeamsIds(matchModel)))
         }.collect { result ->
             _teams.value = result
         }
