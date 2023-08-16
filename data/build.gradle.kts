@@ -8,12 +8,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
-    compileSdk = 34
+    namespace = Modules.Data.namespace
+    compileSdk = Modules.Data.compileSdk
 
     val apiKey: String = gradleLocalProperties(rootDir).getProperty("API_KEY")
     defaultConfig {
-        minSdk = 27
+        minSdk = Modules.Data.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

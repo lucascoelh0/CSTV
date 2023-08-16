@@ -12,11 +12,11 @@ android {
     compileSdk = Modules.App.compileSdk
 
     defaultConfig {
-        applicationId = "com.luminay.gomatches"
+        applicationId = Modules.App.applicationId
         minSdk = Modules.App.minSdk
         targetSdk = Modules.App.targetSdk
         versionCode = Modules.App.versionCode
-        versionName = "1.0"
+        versionName = Modules.App.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

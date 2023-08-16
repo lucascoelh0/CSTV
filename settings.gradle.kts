@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "GO Matches"
+rootProject.name = "CSTV"
 include(":app")
 include(":domain")
 include(":data")
