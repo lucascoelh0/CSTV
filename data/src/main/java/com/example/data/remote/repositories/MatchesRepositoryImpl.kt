@@ -2,7 +2,7 @@ package com.example.data.remote.repositories
 
 import com.example.core.models.Resource
 import com.example.data.remote.api.MatchesApi
-import com.example.data.remote.models.toModel
+import com.example.data.remote.dtos.toModel
 import com.example.data.remote.utils.handleNetworkResponse
 import com.example.domain.models.MatchModel
 import com.example.domain.repositories.IMatchesRepository

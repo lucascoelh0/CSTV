@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.domain.models.TeamModel
 import com.luminay.gomatches.utils.getTeamMock
-import com.luminay.gomatches.ui.common.images.RoundImage
+import com.luminay.gomatches.common.ui.images.RoundImage
 
 @Composable
 fun TeamImageWithName(

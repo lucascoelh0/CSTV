@@ -61,33 +61,44 @@ dependencies {
     implementation(project(Modules.Data.name))
     implementation(project(Modules.Core.name))
     implementation(project(Modules.Domain.name))
+
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.lifecycleRuntimeKtx)
+    implementation(Dependencies.AndroidX.splashScreen)
+
     implementation(Dependencies.Compose.activityCompose)
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.uiToolingPreview)
     implementation(Dependencies.Compose.material3)
     implementation(Dependencies.Compose.coilCompose)
-    implementation(Dependencies.Hilt.hiltAndroid)
     implementation(Dependencies.Compose.lifecycleRuntime)
-    implementation(Dependencies.Libraries.composeShimmer)
+
+    implementation(Dependencies.Hilt.hiltAndroid)
     implementation(Dependencies.Hilt.hiltPlugin)
     implementation(Dependencies.Hilt.hiltNavigationCompose)
+
+    kapt(Dependencies.Hilt.hiltCompiler)
+
     implementation(Dependencies.SquareUp.okhttp)
     implementation(Dependencies.SquareUp.okhttpLoggingInterceptor)
     implementation(Dependencies.SquareUp.retrofit)
     implementation(Dependencies.SquareUp.retrofitConverterMoshi)
+
+    kapt(Dependencies.Libraries.moshiKapt)
+
+    implementation(Dependencies.Libraries.composeShimmer)
     implementation(Dependencies.Libraries.networkResponseAdapter)
     implementation(Dependencies.Libraries.composeDestinationsCore)
-    implementation(Dependencies.AndroidX.splashScreen)
+
     ksp(Dependencies.Libraries.composeDestinationsKsp)
-    kapt(Dependencies.Hilt.hiltCompiler)
-    kapt(Dependencies.Libraries.moshiKapt)
+
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.mockk)
     testImplementation(Dependencies.Test.coroutinesTesting)
+
     androidTestImplementation(Dependencies.Test.androidxTestExtJunit)
     androidTestImplementation(Dependencies.Test.espressoCore)
     androidTestImplementation(Dependencies.Test.uiTestJunit4)
+
     debugImplementation(Dependencies.Compose.uiTooling)
 }

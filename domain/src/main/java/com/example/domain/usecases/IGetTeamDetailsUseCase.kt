@@ -5,5 +5,5 @@ import com.example.domain.models.TeamDetailsModel
 import kotlinx.coroutines.flow.Flow
 
 fun interface IGetTeamDetailsUseCase {
-    fun invoke(id: List<Int>): Flow<Resource<List<TeamDetailsModel>>>
+    operator fun invoke(id: List<Int>): Flow<Resource<List<TeamDetailsModel>>>
 }

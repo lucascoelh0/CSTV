@@ -38,10 +38,10 @@ import com.example.domain.models.sortByStatusAndBeginAt
 import com.luminay.gomatches.R
 import com.luminay.gomatches.destinations.MatchDetailsScreenDestination
 import com.luminay.gomatches.theme.Purple80
-import com.luminay.gomatches.ui.common.messages.ErrorMessage
-import com.luminay.gomatches.ui.common.pullrefresh.PullRefreshIndicator
-import com.luminay.gomatches.ui.common.pullrefresh.pullRefresh
-import com.luminay.gomatches.ui.common.pullrefresh.rememberPullRefreshState
+import com.luminay.gomatches.common.ui.messages.ErrorMessage
+import com.luminay.gomatches.common.ui.pullrefresh.PullRefreshIndicator
+import com.luminay.gomatches.common.ui.pullrefresh.pullRefresh
+import com.luminay.gomatches.common.ui.pullrefresh.rememberPullRefreshState
 import com.luminay.gomatches.utils.getMatchModelMock
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator

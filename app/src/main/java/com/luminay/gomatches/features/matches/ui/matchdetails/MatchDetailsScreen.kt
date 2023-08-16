@@ -32,7 +32,7 @@ import com.luminay.gomatches.R
 import com.luminay.gomatches.features.matches.ui.common.TeamVsTeam
 import com.luminay.gomatches.features.matches.ui.matchdetails.players.PlayersTable
 import com.luminay.gomatches.theme.DarkBlue900
-import com.luminay.gomatches.ui.common.messages.ErrorMessage
+import com.luminay.gomatches.common.ui.messages.ErrorMessage
 import com.luminay.gomatches.utils.getMatchModelMock
 import com.luminay.gomatches.utils.getPlayerModelMock
 import com.ramcosta.composedestinations.annotation.Destination
