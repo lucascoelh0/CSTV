@@ -13,14 +13,8 @@ object Dependencies {
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Version.compose}"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Version.compose}"
         const val material3 = "androidx.compose.material3:material3:${Version.composeMaterial3}"
-        const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Version.compose}"
         const val lifecycleRuntime =
             "androidx.lifecycle:lifecycle-runtime-compose:${Version.lifecycleRuntimeComposeVersion}"
-        const val themeAdapter =
-            "com.google.android.material:compose-theme-adapter:${Version.composeThemeAdapterVersion}"
-        const val foundation = "androidx.compose.foundation:foundation:${Version.compose}"
-        const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Version.compose}"
-        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.viewModelCompose}"
         const val coilCompose = "io.coil-kt:coil-compose:${Version.coil}"
     }
 
@@ -57,7 +51,6 @@ object Dependencies {
         const val junit = "junit:junit:${Version.junit}"
         const val androidxTestExtJunit = "androidx.test.ext:junit:${Version.androidxTestExtJunit}"
         const val espressoCore = "androidx.test.espresso:espresso-core:${Version.espressoCore}"
-        const val uiTestManifest = "androidx.compose.ui:ui-test-manifest"
         const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:${Version.compose}"
         const val mockk = "io.mockk:mockk:${Version.mockk}"
         const val coroutinesTesting = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutinesTesting}"
