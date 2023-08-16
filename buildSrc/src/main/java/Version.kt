@@ -1,4 +1,5 @@
 object Version {
+    const val androidxTestExtJunit = "1.1.5"
     const val activityCompose = "1.7.2"
     const val android = "8.0.1"
     const val appcompat = "1.6.1"
@@ -25,5 +26,5 @@ object Version {
     const val okhttp = "4.11.0"
     const val retrofit = "2.9.0"
     const val splashScreen = "1.0.1"
-    const val androidxTestExtJunit = "1.1.5"
+    const val turbine = "1.0.0"
 }

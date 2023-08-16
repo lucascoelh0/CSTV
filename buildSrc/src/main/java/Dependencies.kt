@@ -55,5 +55,6 @@ object Dependencies {
         const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:${Version.compose}"
         const val mockk = "io.mockk:mockk:${Version.mockk}"
         const val coroutinesTesting = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutinesTesting}"
+        const val turbine = "app.cash.turbine:turbine:${Version.turbine}"
     }
 }

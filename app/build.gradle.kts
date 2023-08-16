@@ -99,6 +99,7 @@ dependencies {
     testImplementation(Dependencies.Test.junit)
     testImplementation(Dependencies.Test.mockk)
     testImplementation(Dependencies.Test.coroutinesTesting)
+    testImplementation(Dependencies.Test.turbine)
 
     androidTestImplementation(Dependencies.Test.androidxTestExtJunit)
     androidTestImplementation(Dependencies.Test.espressoCore)
