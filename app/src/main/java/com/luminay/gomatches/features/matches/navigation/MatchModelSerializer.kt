@@ -1,7 +1,7 @@
 package com.luminay.gomatches.features.matches.navigation
 
-import com.example.data.remote.models.MatchDto
-import com.example.data.remote.models.toModel
+import com.example.data.remote.dtos.MatchDto
+import com.example.data.remote.dtos.toModel
 import com.example.domain.models.MatchModel
 import com.ramcosta.composedestinations.navargs.DestinationsNavTypeSerializer
 import com.ramcosta.composedestinations.navargs.NavTypeSerializer
