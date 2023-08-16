@@ -1,4 +1,4 @@
-package com.luminay.gomatches.ui.common.messages
+package com.luminay.gomatches.common.ui.messages
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.luminay.gomatches.ui.common.pullrefresh
+package com.luminay.gomatches.common.ui.pullrefresh
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.LinearEasing

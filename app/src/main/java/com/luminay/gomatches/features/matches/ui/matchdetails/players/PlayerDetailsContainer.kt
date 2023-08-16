@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.domain.models.PlayerModel
 import com.luminay.gomatches.utils.getPlayerModelMock
 import com.luminay.gomatches.theme.Purple80
-import com.luminay.gomatches.ui.common.images.RoundSquareImage
+import com.luminay.gomatches.common.ui.images.RoundSquareImage
 
 @Composable
 fun PlayerDetailsContainer(

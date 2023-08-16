@@ -1,4 +1,4 @@
-package com.luminay.gomatches.ui.common.pullrefresh
+package com.luminay.gomatches.common.ui.pullrefresh
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset

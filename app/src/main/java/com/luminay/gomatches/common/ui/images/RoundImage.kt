@@ -1,4 +1,4 @@
-package com.luminay.gomatches.ui.common.images
+package com.luminay.gomatches.common.ui.images
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
