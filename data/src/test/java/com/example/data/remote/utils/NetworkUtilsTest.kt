@@ -1,4 +1,4 @@
-package com.example.data.utils
+package com.example.data.remote.utils
 
 import com.example.core.models.Status
 import com.example.data.NETWORK_ERROR
@@ -7,8 +7,7 @@ import com.example.data.STATUS_ERROR
 import com.example.data.STATUS_OK
 import com.example.data.SUCCESS_DATA
 import com.example.data.UNKNOWN_ERROR
-import com.example.data.remote.models.common.GenericErrorResponse
-import com.example.data.remote.utils.handleNetworkResponse
+import com.example.data.remote.dtos.common.GenericErrorResponse
 import com.haroldadmin.cnradapter.NetworkResponse
 import junit.framework.TestCase.assertEquals
 import org.junit.Test

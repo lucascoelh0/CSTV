@@ -1,4 +1,4 @@
-package com.example.data.remote.models.common
+package com.example.data.remote.dtos.common
 
 import com.google.gson.annotations.SerializedName
 
