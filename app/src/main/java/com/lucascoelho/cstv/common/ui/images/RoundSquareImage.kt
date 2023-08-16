@@ -19,8 +19,8 @@ import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.lucascoelho.cstv.R
-import com.lucascoelho.cstv.utils.getTeamMock
 import com.lucascoelho.cstv.theme.Gray100
+import com.lucascoelho.cstv.utils.getTeamMock
 
 @Composable
 fun RoundSquareImage(
@@ -62,6 +62,6 @@ fun RoundSquareImage(
 private fun RoundSquareImagePreview() {
     RoundSquareImage(
         imageUrl = getTeamMock().imageUrl,
-        modifier = Modifier.size(48.dp)
+        modifier = Modifier.size(48.dp),
     )
 }

@@ -11,18 +11,20 @@ import androidx.compose.ui.platform.inspectable
 fun Modifier.pullRefreshIndicatorTransform(
     state: PullRefreshState,
     scale: Boolean = false,
-) = inspectable(inspectorInfo = debugInspectorInfo {
-    name = "pullRefreshIndicatorTransform"
-    properties["state"] = state
-    properties["scale"] = scale
-}) {
+) = inspectable(
+    inspectorInfo = debugInspectorInfo {
+        name = "pullRefreshIndicatorTransform"
+        properties["state"] = state
+        properties["scale"] = scale
+    },
+) {
     Modifier
         .drawWithContent {
             clipRect(
                 top = 0f,
                 left = -Float.MAX_VALUE,
                 right = Float.MAX_VALUE,
-                bottom = Float.MAX_VALUE
+                bottom = Float.MAX_VALUE,
             ) {
                 this@drawWithContent.drawContent()
             }

@@ -7,6 +7,10 @@ plugins {
     kotlin(Plugin.Kotlin.kapt)
 }
 
+apply {
+    from("$rootDir/ktlint.gradle")
+}
+
 android {
     namespace = Modules.Data.namespace
     compileSdk = Modules.Data.compileSdk

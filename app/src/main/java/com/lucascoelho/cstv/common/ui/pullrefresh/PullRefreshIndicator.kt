@@ -61,11 +61,11 @@ fun PullRefreshIndicator(
         Crossfade(
             targetState = refreshing,
             animationSpec = tween(durationMillis = CrossfadeDurationMs),
-            label = "PullRefreshIndicator Crossfade"
+            label = "PullRefreshIndicator Crossfade",
         ) { refreshing ->
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 val spinnerSize = (ArcRadius + StrokeWidth).times(2)
 
@@ -113,7 +113,7 @@ private fun CircularArrowIndicator(
                 size.center.x - arcRadius,
                 size.center.y - arcRadius,
                 size.center.x + arcRadius,
-                size.center.y + arcRadius
+                size.center.y + arcRadius,
             )
             drawArc(
                 color = color,
@@ -125,8 +125,8 @@ private fun CircularArrowIndicator(
                 size = arcBounds.size,
                 style = Stroke(
                     width = StrokeWidth.toPx(),
-                    cap = StrokeCap.Square
-                )
+                    cap = StrokeCap.Square,
+                ),
             )
             drawArrow(path, arcBounds, color, alpha, values)
         }
@@ -169,7 +169,7 @@ private fun DrawScope.drawArrow(
 
     arrow.lineTo(
         x = ArrowWidth.toPx() * values.scale / 2,
-        y = ArrowHeight.toPx() * values.scale
+        y = ArrowHeight.toPx() * values.scale,
     )
 
     val radius = min(bounds.width, bounds.height) / 2f
@@ -177,8 +177,8 @@ private fun DrawScope.drawArrow(
     arrow.translate(
         Offset(
             x = radius + bounds.center.x - inset,
-            y = bounds.center.y + StrokeWidth.toPx() / 2f
-        )
+            y = bounds.center.y + StrokeWidth.toPx() / 2f,
+        ),
     )
     arrow.close()
     rotate(degrees = values.endAngle) {

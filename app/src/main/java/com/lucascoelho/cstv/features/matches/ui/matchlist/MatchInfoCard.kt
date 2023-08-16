@@ -12,12 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lucascoelho.domain.models.MatchModel
-import com.lucascoelho.cstv.utils.getMatchModelMock
 import com.lucascoelho.cstv.features.matches.ui.common.TeamVsTeam
 import com.lucascoelho.cstv.features.matches.ui.common.TimeLabel
 import com.lucascoelho.cstv.theme.Gray30
 import com.lucascoelho.cstv.theme.Purple80
+import com.lucascoelho.cstv.utils.getMatchModelMock
+import com.lucascoelho.domain.models.MatchModel
 
 @Composable
 fun MatchInfoCard(
@@ -63,7 +63,7 @@ fun MatchInfoCard(
                     top = 8.dp,
                     bottom = 8.dp,
                     start = 16.dp,
-                )
+                ),
             )
         }
     }

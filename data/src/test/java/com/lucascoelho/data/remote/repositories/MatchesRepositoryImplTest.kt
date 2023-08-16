@@ -1,5 +1,6 @@
 package com.lucascoelho.data.remote.repositories
 
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.lucascoelho.core.models.Status
 import com.lucascoelho.data.NETWORK_ERROR
 import com.lucascoelho.data.SERVER_ERROR
@@ -10,7 +11,6 @@ import com.lucascoelho.data.remote.api.MatchesApi
 import com.lucascoelho.data.remote.dtos.MatchDto
 import com.lucascoelho.data.remote.dtos.common.GenericErrorResponse
 import com.lucascoelho.data.remote.dtos.toModel
-import com.haroldadmin.cnradapter.NetworkResponse
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK

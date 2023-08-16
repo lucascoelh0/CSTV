@@ -25,12 +25,14 @@ class RequestInterceptorTest {
         requestInterceptor.intercept(chain)
 
         verify {
-            chain.proceed(withArg { modifiedRequest ->
-                TestCase.assertEquals(
-                    BuildConfig.API_KEY,
-                    modifiedRequest.url.queryParameter(RequestInterceptor.TOKEN)
-                )
-            })
+            chain.proceed(
+                withArg { modifiedRequest ->
+                    TestCase.assertEquals(
+                        BuildConfig.API_KEY,
+                        modifiedRequest.url.queryParameter(RequestInterceptor.TOKEN),
+                    )
+                },
+            )
         }
     }
 }

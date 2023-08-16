@@ -25,16 +25,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lucascoelho.core.models.Status
 import com.lucascoelho.core.utils.TimeUtils
-import com.lucascoelho.domain.models.MatchModel
-import com.lucascoelho.domain.models.MatchStatus
-import com.lucascoelho.domain.models.PlayerModel
 import com.lucascoelho.cstv.R
+import com.lucascoelho.cstv.common.ui.messages.ErrorMessage
 import com.lucascoelho.cstv.features.matches.ui.common.TeamVsTeam
 import com.lucascoelho.cstv.features.matches.ui.matchdetails.players.PlayersTable
 import com.lucascoelho.cstv.theme.DarkBlue900
-import com.lucascoelho.cstv.common.ui.messages.ErrorMessage
 import com.lucascoelho.cstv.utils.getMatchModelMock
 import com.lucascoelho.cstv.utils.getPlayerModelMock
+import com.lucascoelho.domain.models.MatchModel
+import com.lucascoelho.domain.models.MatchStatus
+import com.lucascoelho.domain.models.PlayerModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -61,7 +61,7 @@ fun MatchDetailsScreen(
                     end = 24.dp,
                     bottom = 24.dp,
                     start = 24.dp,
-                )
+                ),
         )
 
         MatchStatus(
@@ -88,7 +88,7 @@ fun MatchStatus(
             Alignment.Center
         } else {
             Alignment.TopCenter
-        }
+        },
     ) {
         when (teams?.status) {
             Status.LOADING -> {

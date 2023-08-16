@@ -19,7 +19,7 @@ fun List<MatchModel>.sortByStatusAndBeginAt() = filter {
     compareBy(
         { it.status.ordinal },
         { it.beginAt },
-    )
+    ),
 )
 
 fun MatchModel.leagueSerieName(): String {

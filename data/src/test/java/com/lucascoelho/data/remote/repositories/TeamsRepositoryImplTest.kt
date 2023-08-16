@@ -1,5 +1,6 @@
 package com.lucascoelho.data.remote.repositories
 
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.lucascoelho.core.constants.EMPTY
 import com.lucascoelho.core.models.Status
 import com.lucascoelho.data.NETWORK_ERROR
@@ -11,7 +12,6 @@ import com.lucascoelho.data.remote.api.TeamsApi
 import com.lucascoelho.data.remote.dtos.TeamDetailsDto
 import com.lucascoelho.data.remote.dtos.common.GenericErrorResponse
 import com.lucascoelho.data.remote.dtos.toModel
-import com.haroldadmin.cnradapter.NetworkResponse
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -41,7 +41,7 @@ class TeamsRepositoryImplTest {
                 EMPTY,
                 EMPTY,
                 emptyList(),
-            )
+            ),
         )
         coEvery { teamsApi.getTeamDetails(EMPTY) } returns NetworkResponse.Success(expected, code = STATUS_OK)
 

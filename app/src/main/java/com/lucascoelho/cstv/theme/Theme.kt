@@ -28,6 +28,6 @@ fun CSTVTheme(
 ) {
     MaterialTheme(
         colorScheme = LightColorScheme,
-        content = content
+        content = content,
     )
 }

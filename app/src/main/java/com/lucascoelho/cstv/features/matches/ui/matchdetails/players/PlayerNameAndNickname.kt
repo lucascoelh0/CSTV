@@ -10,9 +10,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.lucascoelho.domain.models.PlayerModel
-import com.lucascoelho.cstv.utils.getPlayerModelMock
 import com.lucascoelho.cstv.theme.Blue80
+import com.lucascoelho.cstv.utils.getPlayerModelMock
+import com.lucascoelho.domain.models.PlayerModel
 
 @Composable
 fun PlayerNameAndNickname(

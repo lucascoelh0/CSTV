@@ -13,10 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lucascoelho.domain.models.PlayerModel
-import com.lucascoelho.cstv.utils.getPlayerModelMock
-import com.lucascoelho.cstv.theme.Purple80
 import com.lucascoelho.cstv.common.ui.images.RoundSquareImage
+import com.lucascoelho.cstv.theme.Purple80
+import com.lucascoelho.cstv.utils.getPlayerModelMock
+import com.lucascoelho.domain.models.PlayerModel
 
 @Composable
 fun PlayerDetailsContainer(
@@ -34,16 +34,16 @@ fun PlayerDetailsContainer(
                     bottomEnd = if (isFirstTeam) 12.dp else 0.dp,
                     bottomStart = if (isFirstTeam) 0.dp else 12.dp,
                     topStart = if (isFirstTeam) 0.dp else 12.dp,
-                )
+                ),
             ),
     ) {
         if (isFirstTeam) {
             PlayerDetailsContainerFirstTeam(
-                playerModel = playerModel
+                playerModel = playerModel,
             )
         } else {
             PlayerDetailsContainerSecondTeam(
-                playerModel = playerModel
+                playerModel = playerModel,
             )
         }
     }

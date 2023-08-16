@@ -31,7 +31,7 @@ fun getLeagueMock() = LeagueModel(
 )
 
 fun getSerieMock() = SerieModel(
-    SERIE_NAME
+    SERIE_NAME,
 )
 
 fun getMatchModelMock() = MatchModel(

@@ -1,12 +1,12 @@
 package com.lucascoelho.cstv.di.modules
 
 import android.content.Context
+import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
+import com.lucascoelho.cstv.BuildConfig
 import com.lucascoelho.data.remote.api.MatchesApi
 import com.lucascoelho.data.remote.api.TeamsApi
 import com.lucascoelho.data.remote.interceptors.CacheInterceptor
 import com.lucascoelho.data.remote.interceptors.RequestInterceptor
-import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
-import com.lucascoelho.cstv.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -18,10 +18,10 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -77,7 +77,7 @@ internal class NetworkModule {
         baseUrl: String,
         moshi: Moshi,
         client: OkHttpClient,
-        networkResponseAdapterFactory: NetworkResponseAdapterFactory
+        networkResponseAdapterFactory: NetworkResponseAdapterFactory,
     ): Retrofit =
         getRetrofit(
             baseUrl,
@@ -90,7 +90,7 @@ internal class NetworkModule {
         baseUrl: String,
         moshi: Moshi,
         client: OkHttpClient,
-        networkResponseAdapterFactory: NetworkResponseAdapterFactory
+        networkResponseAdapterFactory: NetworkResponseAdapterFactory,
     ): Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(client)

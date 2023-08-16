@@ -1,5 +1,6 @@
 package com.lucascoelho.data.remote.utils
 
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.lucascoelho.core.models.Status
 import com.lucascoelho.data.NETWORK_ERROR
 import com.lucascoelho.data.SERVER_ERROR
@@ -8,7 +9,6 @@ import com.lucascoelho.data.STATUS_OK
 import com.lucascoelho.data.SUCCESS_DATA
 import com.lucascoelho.data.UNKNOWN_ERROR
 import com.lucascoelho.data.remote.dtos.common.GenericErrorResponse
-import com.haroldadmin.cnradapter.NetworkResponse
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import java.io.IOException

@@ -17,6 +17,6 @@ fun MainScreen(
     navigator.navigate(
         MatchesScreenDestination(
             id = 1,
-        )
+        ),
     )
 }

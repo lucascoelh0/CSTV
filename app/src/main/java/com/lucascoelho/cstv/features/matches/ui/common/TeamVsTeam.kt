@@ -14,11 +14,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lucascoelho.cstv.R
+import com.lucascoelho.cstv.theme.White50
+import com.lucascoelho.cstv.utils.getMatchModelMock
 import com.lucascoelho.domain.models.MatchModel
 import com.lucascoelho.domain.models.getOpponentsInfo
-import com.lucascoelho.cstv.R
-import com.lucascoelho.cstv.utils.getMatchModelMock
-import com.lucascoelho.cstv.theme.White50
 
 @Composable
 fun TeamVsTeam(
@@ -27,7 +27,7 @@ fun TeamVsTeam(
 ) {
     val opponentsPair by remember {
         mutableStateOf(
-            matchModel.opponents.getOpponentsInfo()
+            matchModel.opponents.getOpponentsInfo(),
         )
     }
 

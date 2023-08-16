@@ -1,8 +1,8 @@
 package com.lucascoelho.data.remote.api
 
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.lucascoelho.data.remote.dtos.TeamDetailsDto
 import com.lucascoelho.data.remote.dtos.common.GenericErrorResponse
-import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

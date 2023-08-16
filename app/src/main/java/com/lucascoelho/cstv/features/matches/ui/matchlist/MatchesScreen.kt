@@ -33,16 +33,16 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lucascoelho.core.models.Status
-import com.lucascoelho.domain.models.MatchModel
-import com.lucascoelho.domain.models.sortByStatusAndBeginAt
 import com.lucascoelho.cstv.R
-import com.lucascoelho.cstv.destinations.MatchDetailsScreenDestination
-import com.lucascoelho.cstv.theme.Purple80
 import com.lucascoelho.cstv.common.ui.messages.ErrorMessage
 import com.lucascoelho.cstv.common.ui.pullrefresh.PullRefreshIndicator
 import com.lucascoelho.cstv.common.ui.pullrefresh.pullRefresh
 import com.lucascoelho.cstv.common.ui.pullrefresh.rememberPullRefreshState
+import com.lucascoelho.cstv.destinations.MatchDetailsScreenDestination
+import com.lucascoelho.cstv.theme.Purple80
 import com.lucascoelho.cstv.utils.getMatchModelMock
+import com.lucascoelho.domain.models.MatchModel
+import com.lucascoelho.domain.models.sortByStatusAndBeginAt
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.filter
@@ -77,11 +77,11 @@ fun MatchesScreen(
                         MatchDetailsScreenDestination(
                             id = it.id,
                             it,
-                        )
+                        ),
                     )
                 },
             )
-        }
+        },
     )
 }
 
@@ -178,7 +178,7 @@ fun MatchesList(
                 bottom = 24.dp,
                 start = 24.dp,
             ),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             items(items = matches) {
                 MatchInfoCard(

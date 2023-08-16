@@ -14,10 +14,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lucascoelho.core.constants.EMPTY
 import com.lucascoelho.core.utils.TimeUtils
-import com.lucascoelho.domain.models.MatchStatus
 import com.lucascoelho.cstv.R
 import com.lucascoelho.cstv.theme.Gray20
 import com.lucascoelho.cstv.theme.Red500
+import com.lucascoelho.domain.models.MatchStatus
 
 @Composable
 fun TimeLabel(
@@ -33,7 +33,7 @@ fun TimeLabel(
                 shape = RoundedCornerShape(
                     topEnd = 16.dp,
                     bottomStart = 16.dp,
-                )
+                ),
             )
             .padding(8.dp),
     ) {

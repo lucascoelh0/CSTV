@@ -20,7 +20,7 @@ fun PlayersTable(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 22.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Column(
             Modifier.weight(1f),

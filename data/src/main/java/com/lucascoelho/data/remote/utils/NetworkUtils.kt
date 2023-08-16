@@ -1,8 +1,8 @@
 package com.lucascoelho.data.remote.utils
 
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.lucascoelho.core.models.Resource
 import com.lucascoelho.data.remote.dtos.common.GenericErrorResponse
-import com.haroldadmin.cnradapter.NetworkResponse
 
 fun <T : Any, R : Any> handleNetworkResponse(
     networkResponse: NetworkResponse<T, GenericErrorResponse>,
@@ -17,7 +17,7 @@ fun <T : Any, R : Any> handleNetworkResponse(
             Resource.error(
                 msg = networkResponse.body?.message.orEmpty(),
                 data = null,
-                errorStatus = networkResponse.code
+                errorStatus = networkResponse.code,
             )
         }
 
@@ -25,7 +25,7 @@ fun <T : Any, R : Any> handleNetworkResponse(
             val error = getErrorFromResponse(networkResponse)
             Resource.exception(
                 data = null,
-                exception = error
+                exception = error,
             )
         }
     }

@@ -18,10 +18,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lucascoelho.domain.models.MatchModel
-import com.lucascoelho.domain.models.leagueSerieName
 import com.lucascoelho.cstv.R
 import com.lucascoelho.cstv.utils.getMatchModelMock
+import com.lucascoelho.domain.models.MatchModel
+import com.lucascoelho.domain.models.leagueSerieName
 
 @Composable
 fun TopBar(
